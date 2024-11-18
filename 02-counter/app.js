@@ -48,6 +48,21 @@ let count = 0;
 // });
 
 
+container.addEventListener("click", (e) => {
+  const styles = e.target.classList;
+
+  count = 
+    styles.contains("decrease") ? --count : 
+    styles.contains("reset") ? 0 : ++count;
+
+  value.textContent = count;
+
+  value.style.color = 
+  (count > 0 ) ? "green" : 
+  (count < 0 ) ? "red" : "#222";
+})
+
+
 
 // container.addEventListener("click", (e) => {
 //   const styles = e.target.classList;
@@ -67,7 +82,22 @@ let count = 0;
 //   value.style.color = color;
 // })
 
-container.addEventListener("click", (e) => {
-  const style = e.target.classList;
-  console.log(style);
-})
+// container.addEventListener("click", (e) => {
+//   const styles = e.target.classList;
+//   [count, color] = 
+//     styles.contains("decrease") ? 
+//       (() => {
+//         // code
+//         return [cout, color];
+//       })() 
+//     : 
+//     styles.contains("reset") ? 
+//       [0, "#222"] 
+//     :
+//       (count + 1 > 0 ) ? [++count, "green"] : 
+//       (count + 1 < 0 ) ? [++count,"red"] : [++count,"#222"];
+
+//   value.textContent = count;
+
+//   value.style.color = color;
+// })
