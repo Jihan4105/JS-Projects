@@ -84,6 +84,12 @@ const menu = [
 const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
 
+// Initializing list when widnow rendered-----------------------------------
+
+window.addEventListener("load", displayMenuItems(menu))
+
+// Making BUTTONS -------------------------------------------------------------
+
 const categories = menu.reduce(function (values, item) {
   if(!values.includes(item.category)){
     values.push(item.category);
@@ -96,4 +102,60 @@ const categoryBtns = categories.map(function (category) {
 }).join("");
 
 btnContainer.innerHTML = categoryBtns;
+
+//Rendering the List -----------------------------------------------------------
+const filterBtns = btnContainer.querySelectorAll(".filter-btn");
+
+filterBtns.forEach(function(btn) {
+  btn.addEventListener("click", (e) => {
+    const category = e.currentTarget.dataset.id;
+
+    const menuItems = menu.filter((item) => {
+      if(category ===  item.category || category === "all"){ 
+        return item;
+      }
+    })
+
+    displayMenuItems(menuItems);
+
+
+    // const menuItems = menu.filter(function (menuItem) {
+    //   if(category === menuItem.category) {
+    //     return menuItem;
+    //   }
+    // })
+
+    // if(category === "all") {
+    //   displayMenuItems("all");
+    // }
+    // else{
+    //   displayMenuItems(menuItems);
+    // }
+
+  })
+})
+
+function displayMenuItems(menuItems) {
+  let displayMenu = menuItems.map(function (item) {
+    return `<article class="menu-item">` +
+              `<img src="${item.img}" class="photo" alt="">` +
+              `<div class="item-info">` +
+                `<header>` +
+                  `<h4>${item.title}</h4>` +
+                  `<h4 class="price">${item.price}</h4>` +
+                `</header>` +
+                `<p class="item-text">` +
+                  `${item.desc}` +
+                `</p>` +
+              `</div>` +
+            `</article>`;
+  }).join("");
+  
+  sectionCenter.innerHTML = displayMenu;
+}
+
+
+
+
+
 
