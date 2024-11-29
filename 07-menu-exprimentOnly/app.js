@@ -85,8 +85,7 @@ const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
 
 // Initializing list when widnow rendered-----------------------------------
-window.addEventListener("load", renderMenuList("all"))
-
+window.addEventListener("load", displayMenuItems("all"))
 
 
 // Making the Buttons-------------------------------------------------------
@@ -108,14 +107,14 @@ btnContainer.innerHTML = categoryBtns;
 //Redering The Lists----------------------------------------------------------
 btnContainer.addEventListener("click", (e) => {
   if(e.target.dataset.id != undefined){
-    renderMenuList(e.target.dataset.id);
+    displayMenuItems(e.target.dataset.id);
   }
 })
 
 
 
 // ************FUNCTIONS********************
-function renderMenuList (category){
+function displayMenuItems (category){
   const menuLists = menu.map(function (item) {
     if(item.category === category || category === "all"){
       return `<article class="menu-item">` +

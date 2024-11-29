@@ -34,6 +34,8 @@ let tempDay = tempDate.getDate();
 
 const futureDate = new Date(tempYear, tempMonth, tempDay + 10, 11, 30, 0);
 
+console.log(futureDate);
+
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
 const minutes = futureDate.getMinutes();

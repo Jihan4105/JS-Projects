@@ -7,6 +7,7 @@ const linksContainer = document.querySelector(".links-container");
 const links = document.querySelector(".links")
 
 
+// 햄버거 버튼을 눌렀을때 navbar를 toggle 해주는 함수.
 navToggle.addEventListener("click",  () => {
   const linksHeight = links.getBoundingClientRect().height;
   const containerHeight = linksContainer.getBoundingClientRect().height;
@@ -29,6 +30,8 @@ const topLink = document.querySelector(".top-link");
 window.addEventListener("scroll", () => {
   const scrollHeight = window.scrollY;
   const navHeight = navbar.getBoundingClientRect().height;
+
+  console.log(scrollHeight);
 
   if(scrollHeight > navHeight) {
     navbar.classList.add("fixed-nav")
