@@ -141,7 +141,7 @@ ul {
   font-size: 16px;
 }
 
-.filters-container h5{
+.filters-container h5 {
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -174,7 +174,7 @@ ul {
   border-radius: 5px;
 }
 
-.products-container .product{
+.products-container .product {
   margin-bottom: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -206,7 +206,7 @@ ul {
     gap: 30px
   }
 
-  .products-container .product{
+  .products-container .product {
     margin-bottom: 0;
   }
 }
@@ -231,9 +231,3 @@ ul {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-
-
-
-
-
-
