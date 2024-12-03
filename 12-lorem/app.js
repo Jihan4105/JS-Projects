@@ -24,7 +24,7 @@ form.addEventListener("submit", (e) => {
   if(isNaN(value) || value < 1 || value > 10) {
     result.innerHTML = `<p class="result">Wrong Number!!</p>`;
   } else {
-    let tempText = text.slice(0, value);
+    let tempText = text.slice(2, value);
     tempText = tempText.map((item) => {
       return `<p class="result">${item}</p>`;
     }).join("");

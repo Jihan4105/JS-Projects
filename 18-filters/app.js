@@ -9,17 +9,22 @@ window.addEventListener("DOMContentLoaded", () => {
   displayProducts(filteredProudcts);  
 })
 
+// Inputfield가 Update 즉 "keyup"이벤트가 발생할때마다 리스트 업데이트.
 searchInput.addEventListener("keyup", () => {
   displayProducts(products.filter((product) => {
     return product.name.indexOf(searchInput.value.toLowerCase()) != -1;
   }));
 })
 
+//버튼을 만들어줌과 동시에 각 버튼에 eventHandler 달기
 function displayButtons () {
+
+  //new Set과 map 함수, spread 연산자를 이용한 필터링
   const buttons = ["all", ...new Set(products.map((product) => {
     return product.company;
   }))];
 
+  //HTML을 만들어 버튼을 실제로 뿌려주는 코드.
   btnContainer.innerHTML = buttons.map((company) => {
     return `
       <button class="company-btn" data-id="${company}">${company}</button>

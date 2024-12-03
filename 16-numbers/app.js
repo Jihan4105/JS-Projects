@@ -15,5 +15,5 @@ items.forEach((item) => {
     }
 
     item.textContent = `${initialValue}`;
-  }, 1)
+  }, 0.01)
 })
