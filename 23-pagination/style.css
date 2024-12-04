@@ -168,3 +168,70 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
+
+.card {
+  background-color: var(--clr-white);
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+  padding: 2rem 3.5rem;
+  text-align: center;
+}
+
+.card img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.card h4 {
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--clr-grey-5);
+}
+
+.btn {
+  padding: 0.35rem 0.75rem;
+  letter-spacing: 1.6px;
+  font-size: 0.75rem;
+  color: var(--clr-primary-5);
+  border-radius: var(--radius);
+  border-color: transparent;
+  text-transform: uppercase;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  width: 2rem;
+  height: 2rem;
+  background: var(--clr-primary-7);
+  border-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: var(--transition);
+}
+
+.active-btn {
+  background-color: var(--clr-primary-1);
+  color: var(--clr-white);
+}
+
+.prev-btn, .next-btn, .last-btn, .first-btn {
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  margin: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
