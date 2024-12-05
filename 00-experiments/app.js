@@ -1,16 +1,15 @@
-const module = {
-  x: 42,
-  getX: function () {
-    return this.x;
-  },
-  getMe: function () {
-    return this.x + 10;
-  }
-};
+var divs = document.querySelectorAll('#container > div');
 
-const bindedGetMe = module.getMe.bind(module);
-console.log(bindedGetMe());
+console.log(divs);
 
-const boundGetX = module.getX.bind(module);
-console.log(boundGetX());
-// Expected output: 42
+//Array.prototype.forEach.call(DOMElement , function(div) { ... }) = [].
+
+// divs.forEach(function(div){ // it worked at chrome 57
+[].forEach.call(divs, function(div){ // changed if user is on old version of browser
+  div.addEventListener('click', function(e){
+    console.log(e.currentTarget);
+    console.log(e.target);
+    var data = this.dataset.attr;
+    console.log(data);
+  });
+});
