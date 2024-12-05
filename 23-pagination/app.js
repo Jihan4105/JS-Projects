@@ -12,7 +12,7 @@ let pages = []
 
 const setupUi = () => {
   displayFollowers(pages[index])
-  displayButtons(btnContainer,pages,index)
+  displayButtons(btnContainer, index)
 }
 
 const init = async () => {
@@ -23,31 +23,29 @@ const init = async () => {
 }
 
 btnContainer.addEventListener("click", (e) => {
-  if(e.target.dataset.index === "first") {
-    index = 0;
-  }
-  else if(e.target.dataset.index === "last") {
-    index = pages.length - 1;
-  }
-  else{
-    if(e.target.classList.contains("btn-container")) {
-      return;
+  if(e.target.getAttribute("name")) {
+    console.log(e.target.getAttribute("name"))
+    if(e.target.getAttribute("name") === "first-btn") {
+      index = 0
     }
-    else if(e.target.classList.contains("page-btn")) {
-      index = parseInt(e.target.dataset.index)
-    }
-    else if(e.target.classList.contains("next-btn") || e.target.classList.contains("fa-chevron-right")) {
-      index++
-      if(index > pages.length - 1) {
-        index = 0
-      }
-    }
-    else if(e.target.classList.contains("prev-btn") || e.target.classList.contains("fa-chevron-left")) {
+    else if(e.target.getAttribute("name") === "prev-btn") {
       index--
       if(index < 0) {
         index = pages.length - 1
       }
     }
+    else if(e.target.getAttribute("name") === "next-btn") {
+      index++
+      if(index > pages.length - 1) {
+        index = 0
+      }
+    }
+    else if(e.target.getAttribute("name") === "last-btn") {
+      index = pages.length - 1;
+    }
+  }
+  else if(e.target.classList.contains("page-btn")) {
+    index = parseInt(e.target.dataset.index)
   }
 
   setupUi()

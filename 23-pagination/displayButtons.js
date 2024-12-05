@@ -1,49 +1,46 @@
-const displayButtons = (container, pages, activeIndex) => {
+const displayButtons = (container, activeIndex) => {
   let btns = [];
+  let pageBtnIndex = [];
 
-  if(activeIndex === 0 ) {
-    btns.push(`<button class="page-btn active-btn" data-index="${activeIndex}">
-      ${activeIndex+1}
-    </button>`);
-    btns.push(`<button class="page-btn" data-index="${activeIndex+1}">
-      ${activeIndex+2}
-    </button>`);
-    btns.push(`<button class="page-btn" data-index="${activeIndex+2}">${activeIndex+3}</button>`);
+  if(activeIndex < 2) {
+    pageBtnIndex = [1, 2, 3];
   }
-  else if(activeIndex === 9) {
-    btns.push(`<button class="page-btn" data-index="${activeIndex-2}">
-      ${activeIndex-1}
-    </button>`);
-    btns.push(`<button class="page-btn" data-index="${activeIndex-1}">
-      ${activeIndex}
-    </button>`);
-    btns.push(`<button class="page-btn active-btn" data-index="${activeIndex}">${activeIndex+1}</button>`);
+  else if(activeIndex > 7) {
+    pageBtnIndex = [8, 9, 10];
   }
   else {
-    btns.push(`<button class="page-btn" data-index="${activeIndex-1}">
-      ${activeIndex}
-    </button>`);
-    btns.push(`<button class="page-btn active-btn" data-index="${activeIndex}">
-      ${activeIndex+1}
-    </button>`);
-    btns.push(`<button class="page-btn" data-index="${activeIndex+1}">${activeIndex+2}</button>`);
+    pageBtnIndex = [activeIndex, activeIndex + 1, activeIndex + 2]
   }
 
-  console.log(btns);
+  pageBtnIndex.forEach((btnIndex) => {
+    btns.push(
+      `<button class="page-btn ${activeIndex + 1 == btnIndex ? "active-btn" : null }" data-index="${btnIndex - 1}">
+        ${btnIndex}
+      </button>`
+    )
+  })
 
-  // for(let i = activeIndex + 1 ; i < activeIndex + 4; i++) {
-  //   if(i === 1) {
-  //     btns.push(`<button class="page-btn active-btn" data-index="${i}">${i}</button>`)
-  //     continue;
-  //   }
-  //   // else if( i === )
-  //   btns.push(`<button class="page-btn" data-index="${i}">${i}</button>`)
-  // }
+  btns.push(
+    `<button class="next-btn" name="next-btn">
+      <i class="fas fa-chevron-right" name="next-btn"></i>
+    </button>`
+  )
+  btns.push(
+    `<button class="last-btn" name="last-btn" data-index="last">
+      <i class="fas fa-angle-double-right" name="last-btn"></i>
+    </button>`
+  )
+  btns.unshift(
+    `<button class="prev-btn" name="prev-btn">
+      <i class="fas fa-chevron-left" name="prev-btn"></i>
+    </button>`
+  )
+  btns.unshift(
+    `<button class="first-btn" name="first-btn" data-index="first">
+      <i class="fas fa-angle-double-left" name="first-btn"></i>
+    </button>`
+  )
 
-  btns.push(`<button class="next-btn"><i class="fas fa-chevron-right"></i></button>`)
-  btns.push(`<button class="last-btn" data-index="last"><i class="fas fa-angle-double-right"></i></button>`)
-  btns.unshift(`<button class="prev-btn"><i class="fas fa-chevron-left"></i></button>`)
-  btns.unshift(`<button class="first-btn" data-index="first"><i class="fas fa-angle-double-left"></i></button>`)
   container.innerHTML = btns.join("");
 }
 
