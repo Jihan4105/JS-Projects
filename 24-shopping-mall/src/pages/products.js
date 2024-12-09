@@ -11,8 +11,11 @@ const init = async () => {
   if(store.length < 1) {
     const products = await fetchProducts()
     setupStore(products)
+    display(products, getElement(".products-container"))
   } 
-  display(store, getElement(".products-container"))
+  else {
+    display(store, getElement(".products-container"))
+  }
 
   loading.style.display = "none "
 }

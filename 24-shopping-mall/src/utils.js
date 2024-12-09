@@ -1,4 +1,4 @@
-
+const singleProductUrl = "https://www.course-api.com/javascript-store-single-product"
 
 const getElement = (selector) => {
   const element = document.querySelector(selector);
@@ -30,6 +30,7 @@ const setStorageItem = (name, item) => {
 }
 
 export {
+  singleProductUrl,
   getElement,
   formatPrice,
   getStorageItem,

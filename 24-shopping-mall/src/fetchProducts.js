@@ -135,4 +135,10 @@ const fetchProducts = async () => {
   return products
 }
 
+export const fetchProduct = async (id) => {
+  return products.find((product) => {
+    return product.id === id
+  })
+}
+
 export default fetchProducts

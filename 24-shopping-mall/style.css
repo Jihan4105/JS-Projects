@@ -517,6 +517,55 @@ p {
   margin-bottom: 3rem;
 }
 
+.cart-item {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 1.5rem;
+  align-items: center;
+}
+
+.cart-item-img {
+  width: 75px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.cart-item-name {
+  margin-bottom: 0.15rem;
+}
+
+.cart-item-price {
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  color: var(--clr-grey-3);
+}
+
+.cart-item-remove-btn {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--clr-grey-5);
+  letter-spacing: var(--spacing);
+  cursor: pointer;
+}
+
+.cart-item-amount {
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--clr-grey-3);
+  line-height: 1;
+}
+
+.cart-item-increase-btn, .cart-item-decrease-btn {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--clr-primary-5);
+  cursor: pointer;
+  font-size: 0.86rem;
+  padding: 0.25rem;
+}
+
 
 /* Title */
 
@@ -724,3 +773,67 @@ p {
   margin-top: 4rem;
 }
 
+/* Single Product */
+
+.page-hero {
+  min-height: 20vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--clr-grey-10);
+  color: var(--clr-grey-5);
+}
+
+.page-hero-title {
+  font-weight: 500;
+}
+
+.single-product {
+  padding: 2rem 0;
+}
+
+.single-product-center {
+  margin: 2rem auto;
+  display: grid;
+  gap: 1rem 2rem;
+}
+
+.single-product-img {
+  height: 25rem;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.single-product-company {
+  font-size: 1.2rem;
+  color: var(--clr-grey-8);
+  text-transform: uppercase;
+  letter-spacing: var(--spacing);
+  margin-bottom: 1.25rem;
+}
+
+.single-product-price {
+  color: var(--clr-grey-3);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+
+.product-color {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #222;
+  margin: 0.5rem 0.5rem 1.5rem 0;
+}
+
+.single-product-dsec {
+  max-width: 25rem;
+  line-height: 1.8;
+}
+
+@media (min-width: 992px) {
+  .single-product-center {
+    grid-template-columns: 1fr 1fr;
+  }
+}
