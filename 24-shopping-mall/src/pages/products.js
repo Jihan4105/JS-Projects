@@ -5,6 +5,8 @@ import { store, setupStore } from "../../store.js"
 import fetchProducts from "../fetchProducts.js"
 import display from "../displayProducts.js"
 
+import setupSearch from "../filters/search.js"
+
 const init = async () => {
   const loading = getElement(".page-loading")
 
@@ -16,6 +18,10 @@ const init = async () => {
   else {
     display(store, getElement(".products-container"))
   }
+
+  // search & filter
+
+  setupSearch(store)
 
   loading.style.display = "none "
 }
