@@ -1,0 +1,76 @@
+/* Common Styles */
+
+:root {
+  /* border radius */
+  --radius: 5px;
+
+  /* color */
+  --clr-white: #ffffff;
+
+  --clr-green-1: #80C17D;
+  --clr-green-2: #6AB767;
+  --clr-green-3: #4EAE4A;
+  --clr-green-4: #34A937;
+  --clr-green-5: #038839;
+  --clr-green-6: #0D642F;
+
+  --clr-ghost-green: #CFE3BE;
+
+  /* transition */
+  --transition: all 0.3s ease;
+
+  /* box-shadow */
+  --shadow-btn: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", "Popppins", serif;
+}
+
+.section {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  border-color: transparent;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background-color: var(--clr-green-2);
+  transition: var(--transition);
+  color: var(--clr-white);
+  box-shadow: var(--shadow-btn);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--clr-green-3);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+}
+
+input {
+  outline: none;
+  padding: 0.6rem 0.5rem;
+  font-size: 1rem;
+}
+
+/* Login */
+
+.login {
+  
+}
+
+
+
+
+
