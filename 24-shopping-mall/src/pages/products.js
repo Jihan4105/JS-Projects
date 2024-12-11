@@ -6,6 +6,8 @@ import fetchProducts from "../fetchProducts.js"
 import display from "../displayProducts.js"
 
 import setupSearch from "../filters/search.js"
+import setupCompanies from "../filters/companies.js"
+import setupPrice from "../filters/price.js"
 
 const init = async () => {
   const loading = getElement(".page-loading")
@@ -14,14 +16,16 @@ const init = async () => {
     const products = await fetchProducts()
     setupStore(products)
     display(products, getElement(".products-container"))
+    setupSearch(products)
+    setupCompanies(products)
+    setupPrice(products)
   } 
   else {
-    display(store, getElement(".products-container"))
+    display(store, getElement(".products-container")) 
+    setupSearch(store)
+    setupCompanies(store)
+    setupPrice(store)
   }
-
-  // search & filter
-
-  setupSearch(store)
 
   loading.style.display = "none "
 }
