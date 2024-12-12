@@ -32,5 +32,22 @@
       "message": "What Today todo",
       "done": true
     }
+  ],
+  "users" : [
+    {
+      "username": "John Doe",
+      "id": "johndoe1234",
+      "password": "johndoe1234"
+    },
+    {
+      "username": "Jane Doe",
+      "id": "janedoe1234",
+      "password": "janedoe1234"
+    },
+    {
+      "username": "Babby Doe",
+      "id": "babydoe1234",
+      "password": "babydoe1234"
+    }
   ]
 }
