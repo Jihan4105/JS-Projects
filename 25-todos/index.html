@@ -17,30 +17,130 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
   <!-- My Style -->
+  <link rel="stylesheet" href="public/css/common.css">
   <link rel="stylesheet" href="public/css/indexStyle.css">
 </head>
 
 <body>
 
-  <main id="login">
-    <div class="container login-container">
-      <form class="login-form card">
-        <div class="title-field">
-          <h1 class="card-title">My SMS</h1>
-          <p class="card-subtitle">World most nice Schedule Management System</p>
+  <!-- Calender -->
+  <section class="section">
+    <div class="container calender-container">
+      <div class="calendar">
+        <div class="calendar-left">
+        
+          <div class="num-date">27</div>
+          <!--num-date -->
+          <div class="day">THURSDAY</div>
+          <!--day -->
+        
         </div>
-        <div class="input-field">
-          <label for="id">ID</label>
-          <input id="id" type="text" name="id" placeholder="Enter your ID">
-          <label for="password">PWD</label>
-          <input id="password" type="password" name="password" placeholder="Enter your Password">
-        </div>
-        <button class="btn login-btn">Log in</button>
-      </form>
-    </div>
-  </main>
+        <div class="calendar-body">
+          <div class="year-navigator">
+            <i class="fas fa-caret-left previous-month"></i>
+            <!--triangle -->
+            <div class="year">2017</div>
+            <!-- year -->
+            <i class="fas fa-caret-right next-month"></i>
+            <!--triangle -->
+          </div>
+  
+          <div>
+            <ul class="months">
+              <li class="month" data-month="1">Jan</li>
+              <li class="month" data-month="2">Feb</li>
+              <li class="month" data-month="3">Mar</li>
+              <li class="month" data-month="4">Apr</li>
+              <li class="month" data-month="5">May</li>
+              <li class="month" data-month="6">Jun</li>
+              <li class="month" data-month="7">July</li>
+              <li class="month" data-month="8">Aug</li>
+              <li class="month" data-month="9">Sep</li>
+              <li class="month" data-month="10">Oct</li>
+              <li class="month" data-month="11">Nov</li>
+              <li class="month" data-month="12">Dec</li>
+            </ul>
 
-  <script src="public/js/index.js"></script>
+            <hr class="month-line" />
+    
+            <ul class="days">
+              <li class="day" data-day="1">Sun</li>
+              <li class="day" data-day="2">Mon</li>
+              <li class="day" data-day="3">Tue</li>
+              <li class="day" data-day="4">Wed</li>
+              <li class="day" data-day="5">Thu</li>
+              <li class="day" data-day="6">Fri</li>
+              <li class="day" data-day="7">Sat</li>
+            </ul>
+          </div>
+  
+          <div>
+  
+            <div class="dates">
+              <ul class="first-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+              <ul class="second-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+              <ul class="third-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+              <ul class="fourth-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+              <ul class="fifth-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+              <ul class="sixth-week">
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+                <li data-date="26">26</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- calendar-base -->
+    </div>
+  </section>
+
+  <script src="public/js/pages/index.js"></script>
 </body>
 
 </html>
