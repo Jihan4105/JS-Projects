@@ -16,6 +16,13 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
+  
+  <!-- VanilaJS Datepicker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker.min.js"></script>
+  
+  
   <!-- My Style -->
   <link rel="stylesheet" href="public/css/common.css">
   <link rel="stylesheet" href="public/css/indexStyle.css">
@@ -23,124 +30,118 @@
 
 <body>
 
-  <!-- Calender -->
-  <section class="section">
-    <div class="container calender-container">
-      <div class="calendar">
-        <div class="calendar-left">
-        
-          <div class="num-date">27</div>
-          <!--num-date -->
-          <div class="day">THURSDAY</div>
-          <!--day -->
-        
-        </div>
-        <div class="calendar-body">
-          <div class="year-navigator">
-            <i class="fas fa-caret-left previous-month"></i>
-            <!--triangle -->
-            <div class="year">2017</div>
-            <!-- year -->
-            <i class="fas fa-caret-right next-month"></i>
-            <!--triangle -->
-          </div>
-  
-          <div>
-            <ul class="months">
-              <li class="month" data-month="1">Jan</li>
-              <li class="month" data-month="2">Feb</li>
-              <li class="month" data-month="3">Mar</li>
-              <li class="month" data-month="4">Apr</li>
-              <li class="month" data-month="5">May</li>
-              <li class="month" data-month="6">Jun</li>
-              <li class="month" data-month="7">July</li>
-              <li class="month" data-month="8">Aug</li>
-              <li class="month" data-month="9">Sep</li>
-              <li class="month" data-month="10">Oct</li>
-              <li class="month" data-month="11">Nov</li>
-              <li class="month" data-month="12">Dec</li>
-            </ul>
-
-            <hr class="month-line" />
-    
-            <ul class="days">
-              <li class="day" data-day="1">Sun</li>
-              <li class="day" data-day="2">Mon</li>
-              <li class="day" data-day="3">Tue</li>
-              <li class="day" data-day="4">Wed</li>
-              <li class="day" data-day="5">Thu</li>
-              <li class="day" data-day="6">Fri</li>
-              <li class="day" data-day="7">Sat</li>
-            </ul>
-          </div>
-  
-          <div>
-  
-            <div class="dates">
-              <ul class="first-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-              <ul class="second-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-              <ul class="third-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-              <ul class="fourth-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-              <ul class="fifth-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-              <ul class="sixth-week">
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-                <li data-date="26">26</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- calendar-base -->
+  <section id="calendar" class="section">
+    <div class="calendar-container">
+      <!-- DatePicker -->
+      <div id="datepicker" data-date="01/25/2020"></div>
+      <button class="btn new-btn">New</button>
     </div>
   </section>
 
-  <script src="public/js/pages/index.js"></script>
+  <!-- <div id="foo">
+      <div class="datepicker datepicker-inline active">
+        <div class="datepicker-picker">
+          <div class="datepicker-header">
+            <div class="datepicker-title" style="display: none;"></div>
+            <div class="datepicker-controls"><button type="button" class="button prev-button prev-btn"
+                tabindex="-1">«</button><button type="button" class="button view-switch" tabindex="-1">January
+                2020</button><button type="button" class="button next-button next-btn" tabindex="-1">»</button></div>
+          </div>
+          <div class="datepicker-main">
+            <div class="datepicker-view">
+              <div class="days">
+                <div class="days-of-week"><span class="dow">Su</span><span class="dow">Mo</span><span
+                    class="dow">Tu</span><span class="dow">We</span><span class="dow">Th</span><span
+                    class="dow">Fr</span><span class="dow">Sa</span></div>
+                <div class="datepicker-grid"><span data-date="1577545200000" class="datepicker-cell day prev">29</span><span
+                    data-date="1577631600000" class="datepicker-cell day prev">30</span><span data-date="1577718000000"
+                    class="datepicker-cell day prev">31</span><span data-date="1577804400000"
+                    class="datepicker-cell day">1</span><span data-date="1577890800000"
+                    class="datepicker-cell day">2</span><span data-date="1577977200000"
+                    class="datepicker-cell day">3</span><span data-date="1578063600000"
+                    class="datepicker-cell day">4</span><span data-date="1578150000000"
+                    class="datepicker-cell day">5</span><span data-date="1578236400000"
+                    class="datepicker-cell day">6</span><span data-date="1578322800000"
+                    class="datepicker-cell day">7</span><span data-date="1578409200000"
+                    class="datepicker-cell day">8</span><span data-date="1578495600000"
+                    class="datepicker-cell day">9</span><span data-date="1578582000000"
+                    class="datepicker-cell day">10</span><span data-date="1578668400000"
+                    class="datepicker-cell day">11</span><span data-date="1578754800000"
+                    class="datepicker-cell day">12</span><span data-date="1578841200000"
+                    class="datepicker-cell day">13</span><span data-date="1578927600000"
+                    class="datepicker-cell day">14</span><span data-date="1579014000000"
+                    class="datepicker-cell day">15</span><span data-date="1579100400000"
+                    class="datepicker-cell day">16</span><span data-date="1579186800000"
+                    class="datepicker-cell day">17</span><span data-date="1579273200000"
+                    class="datepicker-cell day">18</span><span data-date="1579359600000"
+                    class="datepicker-cell day">19</span><span data-date="1579446000000"
+                    class="datepicker-cell day">20</span><span data-date="1579532400000"
+                    class="datepicker-cell day">21</span><span data-date="1579618800000"
+                    class="datepicker-cell day">22</span><span data-date="1579705200000"
+                    class="datepicker-cell day selected focused">23</span><span data-date="1579791600000"
+                    class="datepicker-cell day">24</span><span data-date="1579878000000"
+                    class="datepicker-cell day">25</span><span data-date="1579964400000"
+                    class="datepicker-cell day">26</span><span data-date="1580050800000"
+                    class="datepicker-cell day">27</span><span data-date="1580137200000"
+                    class="datepicker-cell day">28</span><span data-date="1580223600000"
+                    class="datepicker-cell day">29</span><span data-date="1580310000000"
+                    class="datepicker-cell day">30</span><span data-date="1580396400000"
+                    class="datepicker-cell day">31</span><span data-date="1580482800000"
+                    class="datepicker-cell day next">1</span><span data-date="1580569200000"
+                    class="datepicker-cell day next">2</span><span data-date="1580655600000"
+                    class="datepicker-cell day next">3</span><span data-date="1580742000000"
+                    class="datepicker-cell day next">4</span><span data-date="1580828400000"
+                    class="datepicker-cell day next">5</span><span data-date="1580914800000"
+                    class="datepicker-cell day next">6</span><span data-date="1581001200000"
+                    class="datepicker-cell day next">7</span><span data-date="1581087600000"
+                    class="datepicker-cell day next">8</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="datepicker-footer">
+            <div class="datepicker-controls"><button type="button" class="button today-button today-btn" tabindex="-1"
+                style="display: none;">Today</button><button type="button" class="button clear-button clear-btn"
+                tabindex="-1" style="display: none;">Clear</button></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  <section id="todo" class="section">
+    <div class="todo-container">
+      <ol class="todo-lists">
+        <li class="todo-list">
+          <div class="todo-items">
+            <h3 class="todo-title">Tennis Practice</h3>
+            <div class="btn-container">
+              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </li>
+        <li class="todo-list">
+          <div class="todo-items">
+            <h3 class="todo-title">Tennis Practice</h3>
+            <div class="btn-container">
+              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </li>
+        <li class="todo-list">
+          <div class="todo-items">
+            <h3 class="todo-title">Tennis Practice</h3>
+            <div class="btn-container">
+              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
+              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <script type="module" src="public/js/pages/index.js"></script>
 </body>
 
 </html>

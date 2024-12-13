@@ -1,55 +1,50 @@
-ul {
+.calendar-container {
   display: flex;
-
+  justify-content: space-between;
 }
 
-.calendar {
-  border-radius: 20px;
-  background-color: white;
-  color: black;
-  display: flex;
+#datepicker {
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
 }
 
-.calendar-left {
-  width: 300px;
-  height: 500px;
-  border-radius: 20px 0px 0px 20px;
-  background-color: #2ECC71;
-  color: white;
+.new-btn {
+  align-self: flex-start;
 }
 
-.num-date {
-  font-size: 150px;
-  width: 50%;
-  margin: 0 auto;
-  font-weight: 700;
-}
+/* todo */
 
-.day {
-  width: 50%;
-  margin: 0px auto;
-  font-size: 2rem;
-}
-
-.calendar-body {
+.todo-lists {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  row-gap: 2.5rem;
 }
 
-.year-navigator {
+.todo-list {
   display: flex;
-  justify-content: end;
+  counter-increment: item;
+  margin-bottom: 5px;
+}
+
+.todo-list:before {
+  margin-right: 10px;
+  content: counter(item);
+  background: var(--clr-green-2);
+  border-radius: 100%;
+  color: white;
+  width: 1.2em;
+  text-align: center;
+  display: inline-block;
+  font-size: 1.3rem;
+  align-self: center;
+}
+
+.todo-items {
+  display: flex;
+  gap: 1.2rem;
   align-items: center;
-  gap: 1rem;
 }
 
-.year {
-  color: #E8E8E8;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.year-navigator i {
-  font-size: 2rem;
-  color: #E8E8E8;
+.edit-btn {
+  margin-right: 0.6rem;
 }
