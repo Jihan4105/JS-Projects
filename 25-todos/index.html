@@ -31,10 +31,42 @@
 <body>
 
   <section id="calendar" class="section">
+    <div class="btn-container">
+      <button class="btn new-btn">New</button>
+    </div>
     <div class="calendar-container">
       <!-- DatePicker -->
       <div id="datepicker" data-date="01/25/2020"></div>
-      <button class="btn new-btn">New</button>
+      <form class="condition-form">
+        <div class="range-box">
+          <div class="from-group">
+            <label for="from">From : </label>
+            <input class="from-datepicker" id="from" type="date" name="from">
+          </div>
+          <div class="to-group">
+            <label for="to">To : </label>
+            <input class="to-datepicker" id="to" type="date" name="to">
+          </div>
+        </div>
+        <div class="search-group">
+          <label for="search-input"><i class="fas fa-search"></i></label>
+          <input id="search-input" class="search-input" type="input" name="search-input" placeholder="Search...">
+        </div>
+        <div class="radio-box">
+          <div class="radio-group">
+            <label for="all">all</label>
+            <input id="all" class="all-radio" type="radio" name="all" value="all">
+          </div>
+          <div class="radio-group">
+            <label for="done">done</label>
+            <input id="done" class="done-radio" type="radio" name="done" value="done">
+          </div>
+          <div class="radio-group">
+            <label for="notyet">notyet</label>
+            <input id="notyet" class="notyet-radio" type="radio" name="notyet" value="notyet">
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -109,35 +141,44 @@
 
   <section id="todo" class="section">
     <div class="todo-container">
-      <ol class="todo-lists">
+      <ul class="todo-lists">
         <li class="todo-list">
+          <input class="done-checkbox" type="checkbox" id="done" name="done" />
+          <div class="list-number">1</div>
           <div class="todo-items">
             <h3 class="todo-title">Tennis Practice</h3>
-            <div class="btn-container">
+            <div class="iconbtn-container">
               <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
               <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </li>
+        <hr>
         <li class="todo-list">
+          <input class="done-checkbox" type="checkbox" id="done" name="done" />
+          <div class="list-number">1</div>
           <div class="todo-items">
             <h3 class="todo-title">Tennis Practice</h3>
-            <div class="btn-container">
+            <div class="iconbtn-container">
               <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
               <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </li>
+        <hr>
         <li class="todo-list">
+          <input class="done-checkbox" type="checkbox" id="done" name="done" />
+          <div class="list-number">1</div>
           <div class="todo-items">
             <h3 class="todo-title">Tennis Practice</h3>
-            <div class="btn-container">
+            <div class="iconbtn-container">
               <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
               <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </li>
-      </ol>
+        <hr>
+      </ul>
     </div>
   </section>
 

@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": 1,
-      "date": 102304102,
+      "date": 1579878000000,
       "title": "title",
       "author": "typicode",
       "message": "What Today todo",
@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "date": 102304102,
+      "date": 1579878000000,
       "title": "title",
       "author": "typicode",
       "message": "What Today todo",
@@ -18,7 +18,7 @@
     },
     {
       "id": 3,
-      "date": 102304102,
+      "date": 1579878000000,
       "title": "title",
       "author": "typicode",
       "message": "What Today todo",
@@ -26,7 +26,7 @@
     },
     {
       "id": 4,
-      "date": 102304102,
+      "date": 1579878000000,
       "title": "title",
       "author": "changed",
       "message": "What Today todo",

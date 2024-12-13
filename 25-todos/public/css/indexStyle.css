@@ -1,6 +1,45 @@
+.section {
+  width: 50%
+}
+
+@media (max-width:1400px) {
+  .section {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .section {
+    width: 70%;
+  }
+}
+
+@media (max-width: 992px) {
+  .section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding-inline: 1rem
+  }
+}
+
+/* calendar */
+
+.btn-container {
+  margin-bottom: 2rem;
+}
+
+.new-btn {
+  align-self: flex-start;
+}
+
 .calendar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2rem;
 }
 
 #datepicker {
@@ -9,26 +48,121 @@
   box-shadow: var(--shadow-card);
 }
 
-.new-btn {
-  align-self: flex-start;
+
+.condition-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.from-group label, .from-group input,
+.to-group label, .to-group input {
+  display: block;
+}
+
+.range-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.from-datepicker, .to-datepicker {
+  border: 1px solid;
+
+}
+
+.search-group {
+  display: flex;
+  border: 1px solid;
+  border-radius: var(--radius);
+}
+
+.search-group i {
+  padding: 0.8rem
+}
+
+.search-input {
+  padding-left: 0;
+  width: 100%;
+}
+
+.radio-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+
+  .calendar-container {
+    flex-direction: column;
+  }
+
+  #datepicker {
+    margin: 0 auto;
+  }
+
+  .condition-form {
+    align-items: center;
+  }
+
+  .search-group {
+    width: 50%;
+  }
+
+  .radio-box {
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-group {
+    width: 80%;
+  } 
+}
+
+@media (max-width: 500px) {
+  /* .range-box {
+    flex-direction: column;
+    align-items: flex-start;
+  } */
+  
+  .radio-box {
+    width: 100%;
+  }
 }
 
 /* todo */
 
+.todo-container {
+  display: flex;
+  justify-content: center;
+}
+
 .todo-lists {
+  width: 80%;
   display: grid;
-  row-gap: 2.5rem;
+  row-gap: 0.8rem;
 }
 
 .todo-list {
   display: flex;
-  counter-increment: item;
-  margin-bottom: 5px;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
-.todo-list:before {
-  margin-right: 10px;
-  content: counter(item);
+.done-checkbox {
+  margin-right: 0.8rem;
+}
+
+.list-number {
   background: var(--clr-green-2);
   border-radius: 100%;
   color: white;
@@ -41,10 +175,18 @@
 
 .todo-items {
   display: flex;
-  gap: 1.2rem;
+  gap: 0.7rem;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .edit-btn {
   margin-right: 0.6rem;
+}
+
+@media (max-width: 576px) {
+  .todo-lists {
+    width: 100%;
+  }
 }
