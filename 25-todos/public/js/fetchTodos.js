@@ -3,6 +3,8 @@ async function fetchTodos(milisecond) {
   const todos = await response.json();
 
   console.log(todos)
+
+  return todos
 }
 
 export default fetchTodos

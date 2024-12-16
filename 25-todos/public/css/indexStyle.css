@@ -147,38 +147,50 @@
 }
 
 .todo-lists {
-  width: 80%;
+  width: 100%;
   display: grid;
-  row-gap: 0.8rem;
+}
+
+.todo-lists hr {
+  border-color: #ccc;
 }
 
 .todo-list {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 10px;
+  align-items: center;
+  transition: var(--transition);
+  height: 53px;
 }
 
-.done-checkbox {
-  margin-right: 0.8rem;
+.todo-title-group {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.todo-list:has(.todo-title-group:hover) {
+  background-color: var(--clr-ghost-white);
 }
 
 .list-number {
   background: var(--clr-green-2);
-  border-radius: 100%;
+  display: grid;
+  border-radius: 50%;
   color: white;
-  width: 1.2em;
-  text-align: center;
-  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
   font-size: 1.3rem;
-  align-self: center;
+  place-items: center;
 }
 
-.todo-items {
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-  justify-content: space-between;
+.todo-title {
+  font-size: 1.3rem;
   width: 100%;
+  padding-left: 1rem;
 }
 
 .edit-btn {

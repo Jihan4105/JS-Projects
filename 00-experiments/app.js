@@ -1,15 +1,10 @@
-var divs = document.querySelectorAll('#container > div');
+const group = document.querySelector(".group")
 
-console.log(divs);
+group.innerHTML = 
+  `<div onclick="HelloWorld()">
+    aaaaaaa
+  </div>` 
 
-//Array.prototype.forEach.call(DOMElement , function(div) { ... }) = [].
-
-// divs.forEach(function(div){ // it worked at chrome 57
-[].forEach.call(divs, function(div){ // changed if user is on old version of browser
-  div.addEventListener('click', function(e){
-    console.log(e.currentTarget);
-    console.log(e.target);
-    var data = this.dataset.attr;
-    console.log(data);
-  });
-});
+function HelloWorld() {
+  console.log("HELLOW")
+}

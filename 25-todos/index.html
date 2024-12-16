@@ -71,7 +71,7 @@
   </section>
 
   <!-- <div id="foo">
-      <div class="datepicker datepicker-inline active">
+      <div class=`"datepicker datepicker-inline active">
         <div class="datepicker-picker">
           <div class="datepicker-header">
             <div class="datepicker-title" style="display: none;"></div>
@@ -142,47 +142,32 @@
   <section id="todo" class="section">
     <div class="todo-container">
       <ul class="todo-lists">
+        <!-- 
         <li class="todo-list">
           <input class="done-checkbox" type="checkbox" id="done" name="done" />
-          <div class="list-number">1</div>
-          <div class="todo-items">
+          <div class="todo-title-group">
+            <div class="list-number">1</div>
             <h3 class="todo-title">Tennis Practice</h3>
-            <div class="iconbtn-container">
-              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-            </div>
+          </div>
+          <div class="iconbtn-container">
+            <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
+            <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
           </div>
         </li>
         <hr>
-        <li class="todo-list">
-          <input class="done-checkbox" type="checkbox" id="done" name="done" />
-          <div class="list-number">1</div>
-          <div class="todo-items">
-            <h3 class="todo-title">Tennis Practice</h3>
-            <div class="iconbtn-container">
-              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-            </div>
-          </div>
-        </li>
-        <hr>
-        <li class="todo-list">
-          <input class="done-checkbox" type="checkbox" id="done" name="done" />
-          <div class="list-number">1</div>
-          <div class="todo-items">
-            <h3 class="todo-title">Tennis Practice</h3>
-            <div class="iconbtn-container">
-              <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
-              <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
-            </div>
-          </div>
-        </li>
-        <hr>
+        -->
       </ul>
     </div>
   </section>
 
   <script type="module" src="public/js/pages/index.js"></script>
+  <!-- <script>
+    function renderTodo(id) {
+      console.log(id)
+
+      window.location.href = 'http://localhost:5001/25-todos/todo.html?id=${todo.id}'
+    }
+  </script> -->
 </body>
 
 </html>
