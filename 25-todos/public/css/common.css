@@ -7,14 +7,17 @@
   /* color */
   --clr-white: #ffffff;
 
-  --clr-green-1: #80C17D;
+  --clr-green-1: rgb(128, 193, 125);
   --clr-green-2: #6AB767;
   --clr-green-3: #4EAE4A;
   --clr-green-4: #34A937;
   --clr-green-5: #038839;
   --clr-green-6: #0D642F;
 
+  --clr-dangerous: #F73131;
+
   --clr-ghost-green: #F3FFE8;
+  --clr-ghost-green1: rgba(128, 193, 125, 0.5);
   --clr-ghost-white: #FAFAFF;
 
   /* transition */
@@ -32,6 +35,10 @@
   font-family: "Montserrat", "Popppins", serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   outline: none;
   padding: 0.8rem 0.7em;
@@ -42,11 +49,6 @@ input {
 
 ul {
   list-style-type: none;
-}
-
-ol {
-  list-style: none;
-  counter-reset: item;
 }
 
 h1 {
@@ -76,9 +78,63 @@ hr {
 }
 
 .section {
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   padding: 2rem;
+}
+
+@media (max-width:1400px) {
+  .section {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .section {
+    width: 70%;
+  }
+}
+
+@media (max-width: 992px) {
+  .section {
+    width: 100%;
+  }
+
+  #nav.section {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding-inline: 1rem
+  }
+}
+
+.logo {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.logo-desc {
+  font-size: 0.8rem;
+}
+
+#nav {
+  padding: 1rem;
+  background-color: var(--clr-green-5);
+  color: var(--clr-white);
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .btn {
@@ -97,6 +153,14 @@ hr {
 .btn:hover {
   background-color: var(--clr-green-3);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.cancel-btn {
+  background-color: var(--clr-dangerous);
+}
+
+.cancel-btn:hover {
+  background-color: #F7000D;
 }
 
 .icon-btn {
@@ -134,11 +198,6 @@ hr {
 }
 
 /* Checkbox */
-
-/* <div class="checkbox-wrapper-19">
-  <input type="checkbox" id="cbtest-19" />
-  <label for="cbtest-19" class="check-box">
-</div> */
 
 .checkbox-wrapper-19 {
   box-sizing: border-box;

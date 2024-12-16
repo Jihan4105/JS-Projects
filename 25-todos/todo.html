@@ -4,8 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+  <!-- My Style -->
+  <link rel="stylesheet" href="public/css/common.css">
+  <link rel="stylesheet" href="public/css/todoStyle.css">
 </head>
 <body>
+
+  <!-- Navbar -->
+  <section id="nav" class="section">
+    <div class="nav-container">
+      <a class="logo" href="http://127.0.0.1:5501/25-todos/index.html">My SMS</a>
+      <span class="logo-desc"> - Worldbest SMS</span>
+    </div>
+  </section>
+
+  <!-- Todo -->
+  <section id="todo" class="section">
+    <h1 class="todo-section-title">Your Title</h1>
+    <form class="todo-form">
+      <div class="time-input-box">
+        <div class="time-input-group">
+          <label for="todo-date">Date * </label>
+          <input type="date" name="todo-date" id="todo-date" class="todo-date">
+          <div class="date-error">Invaild Date</div>
+        </div>
+        <div class="time-input-group">
+          <label for="todo-time">Time </label>
+          <input type="time" name="todo-time" id="todo-time" class="todo-time">
+        </div>
+      </div>
+      <div class="title-input-group">
+        <label for="todo-title">Title *</label>
+        <input type="text" name="todo-title" id="todo-title" class="todo-title" placeholder="Write your title">
+        <div class="title-error">Invalid Title</div>
+      </div>
+      <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec" placeholder="Write down your Description"></textarea > 
+      <div class="btn-container">
+        <button class="btn submit-btn">Submit</button>
+        <button class="btn cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </section>
   
+  <!-- Todo Overlay -->
+  <div class="todo-overlay ">
+    <div class="card overlay-container ">
+      <i class="fas fa-times"></i>
+      <span><b>WARNING!</b></span>
+      <p class="overlay-text">You'll gonna lose your works, Is that ok?</p>
+      <div class="btn-container">
+        <button class="btn ok-btn">Ok</button>
+        <button class="btn cancel-btn">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./public/js/pages/todo.js"></script>
 </body>
 </html>

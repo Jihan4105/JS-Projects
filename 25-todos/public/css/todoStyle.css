@@ -1,0 +1,147 @@
+/* Todo */
+.todo-section-title {
+  margin-bottom: 2.5rem;
+}
+
+.todo-form {
+  background-color: white;
+  display: grid;
+  gap: 1rem;
+}
+
+.time-input-box {
+  display: flex;
+  gap: 2rem;
+}
+
+.todo-form input {
+  border-bottom: 1px solid var(--clr-ghost-green1);
+  border-radius: 0%;
+  margin-left: 0.8rem;
+}
+
+.title-input-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.todo-title {
+  width: 40%;
+}
+
+.todo-form input:focus, .todo-form textarea:focus {
+  border-bottom-color: var(--clr-green-1);
+}
+
+
+.todo-dsec {
+  width: 90%;
+  justify-self: center;
+  resize: vertical;
+  min-height: 200px;
+  max-height: 300px;
+  outline: none;
+  border: 1px solid var(--clr-ghost-green1);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 0.8rem;
+}
+
+.date-error, .title-error {
+  color: #cc0033;
+  font-size: 12px;
+  margin: 5px 0 0 66px;
+  display: none;
+}
+
+.date-error.show, .title-error.show {
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .time-input-box {
+    gap: 1.5rem;
+  }
+
+  .time-input-box {
+    flex-direction: column;
+  }
+
+  .time-input-box {
+    margin-bottom: 0.8rem;
+  }
+
+  .time-input-group .todo-time {
+    margin-left: 21px;
+  }
+
+  .title-input-group {
+    width: 90%;
+  }
+
+  .todo-title {
+    width: 80%;
+  }
+}
+
+
+/* Todo Overlay */
+
+.todo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  z-index: -1;
+  transition: var(--transition);
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.todo-overlay.show {
+  opacity: 1;
+  z-index: 100;
+}
+
+.overlay-container {
+  position: relative;
+  background-color: var(--clr-white);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transform: scale(0);
+  transition: var(--transition);
+}
+
+.overlay-container.show {
+  transform: scale(1);
+}
+
+.overlay-container i {
+  font-size: 2rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.overlay-container span {
+  font-size: 2rem;
+  justify-self: center;
+  margin-bottom: 0.6rem;
+}
+
+.overlay-text {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+}
