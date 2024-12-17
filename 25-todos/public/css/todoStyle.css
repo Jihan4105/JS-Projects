@@ -14,6 +14,10 @@
   gap: 2rem;
 }
 
+.time-input-group:nth-child(2) {
+  position: relative;
+}
+
 .todo-form input {
   border-bottom: 1px solid var(--clr-ghost-green1);
   border-radius: 0%;
@@ -32,6 +36,18 @@
 
 .todo-form input:focus, .todo-form textarea:focus {
   border-bottom-color: var(--clr-green-1);
+}
+
+.time-input-group div {
+  /* display: inline-block; */
+  position: absolute;
+  top: 0.5rem;
+  right: -3rem;
+  align-self: center;
+}
+
+.time-input-group div span {
+  margin-left: 2rem;
 }
 
 
@@ -81,6 +97,10 @@
 
   .time-input-group .todo-time {
     margin-left: 21px;
+  }
+
+  .time-input-group div {
+    left: 13.2rem
   }
 
   .title-input-group {
@@ -144,4 +164,79 @@
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 3rem;
+}
+
+/* Loading Overlay */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /*   background-image: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,153,212,0) calc(15% + 100px), rgba(0,99,138,0) calc(85% + 100px), rgba(0,0,0,0.15) 100%); */
+  display: none;
+}
+
+.loading-overlay.show {
+  display: flex;
+  z-index: 100;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-overlay .loaoding-container div {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 100%;
+  margin: 2vw;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  animation: bounce 1.5s 0.5s linear infinite;
+}
+
+.yellow {
+  background-color: #feb60a;
+}
+
+.red {
+  background-color: #ff0062;
+  animation-delay: 0.1s;
+}
+
+.blue {
+  background-color: #00dbf9;
+  animation-delay: 0.2s;
+}
+
+.violet {
+  background-color: #da00f7;
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+
+  0%,
+  50%,
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
+  25% {
+    transform: scale(0.6);
+    filter: blur(3px);
+  }
+
+  75% {
+    filter: blur(3px);
+    transform: scale(1.4);
+  }
 }

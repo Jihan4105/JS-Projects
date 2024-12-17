@@ -27,9 +27,9 @@ dateContainer.addEventListener("click", async (e) => {
           <div class="list-number clickable" data-id="${todo.id}">${index + 1}</div>
           <h3 class="todo-title clickable" data-id="${todo.id}">${todo.title}</h3>
         </div>
-        <div class="iconbtn-container">
-          <button class="icon-btn edit-btn"><i class="fas fa-edit"></i></button>
-          <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+        <div class="iconbtn-container" data-id="${todo.id}">
+          <button class="icon-btn edit-btn" data-id="${todo.id}"><i class="fas fa-edit edit-btn"></i></button>
+          <button class="icon-btn delete-btn" data-id="${todo.id}"><i class="fas fa-trash-alt delete-btn"></i></button>
         </div>
         </li>
         <hr>
@@ -37,14 +37,16 @@ dateContainer.addEventListener("click", async (e) => {
   }).join("")
 })
 
-// function renderTodo (id) {
-//   console.log(id)
-
-//   window.location.href = `http://localhost:5001/25-todos/todo.html?id=${id}`
-// }
-
 todoLists.addEventListener("click", (e) => {
+
+  // List Item Clicked
   if (e.target.classList.contains("clickable")) {
-    window.location.href = `http://localhost:5501/25-todos/todo.html?id=${e.target.dataset.id}`
+    window.location.href = `http://localhost:5501/25-todos/todo.html?id=${e.target.dataset.id}&mode=read`
+  }
+  
+  // Edit button Clicked
+  else if(e.target.classList.contains("edit-btn")) {
+    window.location.href = `http://localhost:5501/25-todos/todo.html?id=${e.target.parentElement.dataset.id}&mode=update`
   }
 })
+

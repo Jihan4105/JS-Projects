@@ -31,30 +31,33 @@
 
   <!-- Todo -->
   <section id="todo" class="section">
-    <h1 class="todo-section-title">Your Title</h1>
-    <form class="todo-form">
-      <div class="time-input-box">
-        <div class="time-input-group">
-          <label for="todo-date">Date * </label>
-          <input type="date" name="todo-date" id="todo-date" class="todo-date">
-          <div class="date-error">Invaild Date</div>
+    <div class="todo-container">
+      <h1 class="todo-section-title">Your Title</h1>
+      <form class="todo-form">
+        <div class="time-input-box">
+          <div class="time-input-group">
+            <label for="todo-date">Date * </label>
+            <input type="date" name="todo-date" id="todo-date" class="todo-date">
+            <div class="date-error">Invaild Date</div>
+          </div>
+          <div class="time-input-group">
+            <label for="todo-time">Time </label>
+            <input type="time" name="todo-time" id="todo-time" class="todo-time">
+            <input class="wholeday-checkbox" type="checkbox" id="wholeday" name="wholeday" />
+          </div>
         </div>
-        <div class="time-input-group">
-          <label for="todo-time">Time </label>
-          <input type="time" name="todo-time" id="todo-time" class="todo-time">
+        <div class="title-input-group">
+          <label for="todo-title">Title *</label>
+          <input type="text" name="todo-title" id="todo-title" class="todo-title" placeholder="Write your title">
+          <div class="title-error">Invalid Title</div>
         </div>
-      </div>
-      <div class="title-input-group">
-        <label for="todo-title">Title *</label>
-        <input type="text" name="todo-title" id="todo-title" class="todo-title" placeholder="Write your title">
-        <div class="title-error">Invalid Title</div>
-      </div>
-      <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec" placeholder="Write down your Description"></textarea > 
-      <div class="btn-container">
-        <button class="btn submit-btn">Submit</button>
-        <button class="btn cancel-btn">Cancel</button>
-      </div>
-    </form>
+        <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec" placeholder="Write down your Description"></textarea > 
+        <div class="btn-container">
+          <button class="btn submit-btn">Submit</button>
+          <button class="btn cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
   </section>
   
   <!-- Todo Overlay -->
@@ -69,6 +72,16 @@
           Cancel
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay show">
+    <div class="loading-container">
+      <div class="yellow"></div>
+      <div class="red"></div>
+      <div class="blue"></div>
+      <div class="violet"></div>
     </div>
   </div>
 
