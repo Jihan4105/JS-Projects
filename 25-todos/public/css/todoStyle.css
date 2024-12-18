@@ -197,9 +197,3 @@
     transform: scale(1.4);
   }
 }
-
-@media (max-width: 576px) {
-  .todo-overlay-container {
-    width: 90%;
-  }
-}

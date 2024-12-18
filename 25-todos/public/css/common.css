@@ -252,6 +252,12 @@ hr {
   gap: 0.8rem;
 }
 
+@media (max-width: 576px) {
+  .overlay-container {
+    width: 90%;
+  }
+}
+
 /* Checkbox */
 
 .checkbox-wrapper-19 {
