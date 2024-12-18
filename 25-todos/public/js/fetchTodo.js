@@ -1,3 +1,5 @@
+import { searchStringToObject } from "./utils.js";
+
 export async function fetchTodo(id) {
   const response = await fetch(`http://localhost:3000/todos?id=${id}`);
   const todo = await response.json();
@@ -45,6 +47,10 @@ export async function deleteTodo(id) {
     const response = await fetch(`http://localhost:3000/todos/${id}`, {
       method: "DELETE"
     })
+    
+    window.location.reload(true)
+
+    window.location.href
     console.log(response)
   } catch (error) {
     console.log(error)

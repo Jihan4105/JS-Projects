@@ -4,3 +4,9 @@ fetchTodos.js 에서 index.html로 가는 URL에 date추가 까지 했음.
 여기서 부터
 
 index.html URL에 date추가해주는 작업해줘야함.
+
+2024-12-18 23:09.......
+
+이제 CRUD 메서드가 다 끝났고,
+
+내일부턴 index.html에 있는 filtering과 done을 구현해 주어야함.

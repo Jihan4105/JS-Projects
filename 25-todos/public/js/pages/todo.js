@@ -1,8 +1,8 @@
 import { getElement, searchStringToObject } from "../utils.js";
 import formatDate from "../formatDate.js";
 import { fetchTodo } from "../fetchTodo.js";
+import showWorkCheckModal from "../showCheckModal.js";
 import alldayCheckBoxHandler from "../todo/alldayCheckbox.js"
-import cancelWorksHandler from "../todo/cancelWorks.js";
 import noTitleErrorHandler from "../todo/notitleError.js";
 import submitBtnHandler from "../todo/submitBtn.js";
 
@@ -12,8 +12,13 @@ const todoContainer = getElement(".todo-container");
 function init() {
   const url = new URL(`${window.location.href}`);
   const urlParamsObject = searchStringToObject(url)
+  console.log(urlParamsObject)
+  const { id, mode, selectedDate, selectedMilisecond } = urlParamsObject;
 
-  const { id, mode, selectedDate } = urlParamsObject;
+  // 로고이벤트 리스너 달아주기
+  const logo = getElement(".logo")
+  logo.addEventListener("click", () => window.location.href = `http://127.0.0.1:5500/index.html?date=${selectedMilisecond}`)
+
 
   switch (mode) {
     case "create":
@@ -69,8 +74,8 @@ function createModeDisplay(selectedDate) {
   //Title이 빈칸일때 errorMessage 보이기
   noTitleErrorHandler()
 
-  //수정취소를 클릭하였을때 발생하는 이벤트들
-  cancelWorksHandler()
+  //생성취소소를 클릭하였을때 발생하는 이벤트들
+  showWorkCheckModal(selectedDate)
 
   //Submit버튼을 눌렀을때
   submitBtnHandler("create")
@@ -80,6 +85,7 @@ function createModeDisplay(selectedDate) {
 async function readModeDisplay(id) {
   const todo = await fetchTodo(id);
   const { date, time } = formatDate(todo.date, todo.allday);
+  const milisecond = new Date(date).getTime()
   loadingOverlay.classList.remove("show");
 
   todoContainer.innerHTML = `
@@ -120,7 +126,7 @@ async function readModeDisplay(id) {
   getElement(".submit-btn").addEventListener("click", (e) => {
     e.preventDefault();
 
-    window.location.href = "http://localhost:5500/index.html";
+    window.location.href = `http://localhost:5500/index.html?date=${milisecond}`;
   });
 }
 
@@ -170,10 +176,10 @@ async function updateModeDisplay(id) {
   noTitleErrorHandler()
 
   //수정취소를 클릭하였을때 발생하는 이벤트들
-  cancelWorksHandler()
+  showWorkCheckModal(date)
 
   //Submit버튼을 눌렀을때
-  submitBtnHandler("update", todo.done)
+  submitBtnHandler("update", id, todo.done)
 }
 
 

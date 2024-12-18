@@ -1,14 +1,14 @@
 import formatDate from "../formatDate.js";
-import fetchTodos from "../fetchTodos.js";
 import { getElement, searchStringToObject } from "../utils.js";
+import displayTodos from "../displayTodos.js";
 import { deleteTodo } from "../fetchTodo.js";
 
 // GlobalVariables
-const url = new URL(`${window.location.href}`);
-let selectedDate = formatDate(new Date().getTime()).date
-let selectedMilisecond = searchStringToObject(url).date
-// const todayStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
-// const todayEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
+let selectedMilisecond = searchStringToObject(new URL(`${window.location.href}`)).date
+let selectedDate = formatDate(parseInt(selectedMilisecond)).date
+let deleteTodoId;
+const overlay = getElement(".overlay")
+const overlayContainer = getElement(".overlay-container")
 
 // Vanila JS Datepicker 
 const datepickerDOM = document.getElementById("datepicker");
@@ -16,94 +16,78 @@ const datepicker = new Datepicker(datepickerDOM, {
   // ...options
   format: "yyyy-mm-dd",
   todayHighlight: true,
+  defaultViewDate: selectedDate,
   maxDate: "2200-12-31",
   minDate: "1990-01-01"
 });
 
+// 로고이벤트 리스너 달아주기
+const logo = getElement(".logo")
+logo.addEventListener("click", () => window.location.href = `http://127.0.0.1:5500/index.html?date=${selectedMilisecond}`)
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  getElement(".today.focused").classList.add("selected")
+//페이지가 로딩 되었을때 실행
+document.addEventListener("DOMContentLoaded", () => {
+  getElement(".datepicker-cell.focused").classList.add("selected")
+  const url = new URL(`${window.location.href}`);
+  const { date } = searchStringToObject(url)
+  const formatedDate = formatDate(parseInt(date)).date
+  const dateStartMilisecond = new Date(formatedDate + ":00:00:00").getTime()
+  const dateEndMilisecond = new Date(formatedDate + ":23:59:59").getTime()
+
+  displayTodos(dateStartMilisecond, dateEndMilisecond)
 })
 
 
-// Datepicker가 Selecte 되었을때 실행
+// Datepicker가 Select 되었을때 실행
 const dateContainer = getElement(".datepicker-grid");
 const todoLists = getElement(".todo-lists");
 
 dateContainer.addEventListener("click", async (e) => {
   const milisecond = parseInt(e.target.dataset.date);
-  const todoLists = getElement(".todo-lists");
   selectedDate = formatDate(milisecond).date
-  selectedMilisecond = milisecond
+  selectedMilisecond = milisecond.toString()
   const dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
   const dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
-  const todos = await fetchTodos(dateStartMilisecond, dateEndMilisecond);
-
-  todoLists.innerHTML = todos
-    .map((todo, index) => {
-      return `
-      <li class="todo-list">
-        <div class="checkbox-wrapper-19">
-          <input class="done-checkbox" type="checkbox" id="checkbox-${
-            todo.id
-          }" ${todo.done ? "checked" : "none"}/ name="checkbox-${todo.id}">
-          <label for="checkbox-${todo.id}" class="check-box">
-        </div>
-        <div class="todo-title-group clickable" data-id="${todo.id}">
-          <div class="list-number clickable" data-id="${todo.id}">${
-        index + 1
-      }</div>
-          <h3 class="todo-title clickable" data-id="${todo.id}">${
-        todo.title
-      }</h3>
-        </div>
-        <div class="iconbtn-container" data-id="${todo.id}">
-          <button class="icon-btn edit-btn" data-id="${
-            todo.id
-          }"><i class="fas fa-edit edit-btn"></i></button>
-          <button class="icon-btn delete-btn" data-id="${
-            todo.id
-          }"><i class="fas fa-trash-alt delete-btn"></i></button>
-        </div>
-        </li>
-        <hr>
-    `;
-    })
-    .join("");
+  
+  displayTodos(dateStartMilisecond, dateEndMilisecond)
 });
 
 todoLists.addEventListener("click", (e) => {
   // List Item Clicked
   if (e.target.classList.contains("clickable")) {
-    window.location.href = `http://localhost:5500/todo.html?id=${e.target.dataset.id}&mode=read`;
+    window.location.href = `http://localhost:5500/todo.html?id=${e.target.dataset.id}&mode=read&selectedMilisecond=${selectedMilisecond}`;
   }
 
   // Edit button Clicked
   else if (e.target.classList.contains("edit-btn")) {
-    window.location.href = `http://localhost:5500/todo.html?id=${e.target.parentElement.dataset.id}&mode=update`;
+    window.location.href = `http://localhost:5500/todo.html?id=${e.target.parentElement.dataset.id}&mode=update&selectedMilisecond=${selectedMilisecond}`;
   }
 
   // Delete button Clicked
   else if (e.target.classList.contains("delete-btn")) {
-    // const promiseDelete = new Promise((res, rej) => {
-    //   deleteTodo(e.target.parentElement.dataset.id)
-    //   res("success")
-    // })
-
-    // promiseDelete
-    //   .then((value) => {
-    //     console.log("!")
-    //     fetchTodos(selectedMilisecond)
-    //   })
-
+    deleteTodoId = e.target.parentElement.dataset.id
+    overlay.classList.add("show")
+    overlayContainer.classList.add("show")
   }
 });
 
 
-//New Button이 클릭되었을때
+// New Button이 클릭되었을때
 const newBtn = getElement(".new-btn")
 newBtn.addEventListener("click", (e) => {
   e.preventDefault()
 
-  window.location.href = `http://localhost:5500/todo.html?selectedDate=${selectedDate}&mode=create`
+  window.location.href = `http://localhost:5500/todo.html?mode=create&selectedDate=${selectedDate}&selectedMilisecond=${selectedMilisecond}`
+})
+
+// DeleteModal 관련 핸들러들들
+const secondDeleteButton = getElement(".second-dangerous-btn")
+const returnToFormBtn = getElement(".return-btn")
+secondDeleteButton.addEventListener("click", () => {
+  deleteTodo(deleteTodoId)
+})
+
+returnToFormBtn.addEventListener("click", () => {
+  overlay.classList.remove("show")
+  overlayContainer.classList.remove("show")
 })

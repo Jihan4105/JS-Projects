@@ -2,7 +2,7 @@ import { updateTodo, createTodo } from "../fetchTodo.js";
 import { getElement } from "../utils.js";
 
 //Submit버튼을 눌렀을때
-function submitBtnHandler(mode, isDoneTodo) {
+function submitBtnHandler(mode, id, isDoneTodo) {
   const submitBtn = getElement(".submit-btn")
   submitBtn.addEventListener("click", (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ function submitBtnHandler(mode, isDoneTodo) {
         parseInt(timeValue.slice(3, 5)) * 60000;
       
       if(mode === "update") {
-        updateTodo({
+        updateTodo(id, {
           date: newMilisecond,
           title: newTitle,
           message: newText,
