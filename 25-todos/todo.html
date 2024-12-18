@@ -24,7 +24,7 @@
   <!-- Navbar -->
   <section id="nav" class="section">
     <div class="nav-container">
-      <a class="logo" href="http://127.0.0.1:5501/25-todos/index.html">My SMS</a>
+      <a class="logo" href="http://127.0.0.1:5500/index.html">My SMS</a>
       <span class="logo-desc"> - Worldbest SMS</span>
     </div>
   </section>
@@ -32,13 +32,12 @@
   <!-- Todo -->
   <section id="todo" class="section">
     <div class="todo-container">
-      <h1 class="todo-section-title">Your Title</h1>
+      <!-- <h1 class="todo-section-title">Your Title</h1>
       <form class="todo-form">
         <div class="time-input-box">
           <div class="time-input-group">
             <label for="todo-date">Date * </label>
             <input type="date" name="todo-date" id="todo-date" class="todo-date">
-            <div class="date-error">Invaild Date</div>
           </div>
           <div class="time-input-group">
             <label for="todo-time">Time </label>
@@ -54,22 +53,21 @@
         <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec" placeholder="Write down your Description"></textarea > 
         <div class="btn-container">
           <button class="btn submit-btn">Submit</button>
-          <button class="btn cancel-btn">Cancel</button>
+          <button class="btn dangerous-btn first-dangerous-btn">Cancel</button>
         </div>
-      </form>
+      </form> -->
     </div>
   </section>
   
   <!-- Todo Overlay -->
   <div class="todo-overlay ">
-    <div class="card overlay-container ">
-      <i class="fas fa-times"></i>
+    <div class="card todo-overlay-container ">
       <span><b>WARNING!</b></span>
-      <p class="overlay-text">You'll gonna lose your works, Is that ok?</p>
+      <p class="overlay-text">You'll gonna lose All of your works, Is that ok?</p>
       <div class="btn-container">
-        <button class="btn ok-btn">Ok</button>
-        <button class="btn cancel-btn">
-          Cancel
+        <button class="btn return-btn ">Return Form</button>
+        <button class="btn dangerous-btn second-dangerous-btn">
+          Delete Anyways
         </button>
       </div>
     </div>

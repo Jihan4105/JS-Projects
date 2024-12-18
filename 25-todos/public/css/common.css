@@ -155,11 +155,11 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.cancel-btn {
+.dangerous-btn {
   background-color: var(--clr-dangerous);
 }
 
-.cancel-btn:hover {
+.dangerous-btn:hover {
   background-color: #F7000D;
 }
 
@@ -365,4 +365,18 @@ hr {
   -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
   -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
   animation: dothatopcheck-19 0.4s ease 0s forwards;
+}
+
+/* Custom DatePicker */
+
+.datepicker-grid .datepicker-cell.today:not(.selected) {
+  background-color: transparent;
+  border: 2px solid var(--clr-green-1);
+  color: black;
+  font-weight: 600;
+}
+
+.datepicker-cell.selected,
+.datepicker-cell.selected:hover {
+  background-color: var(--clr-green-2);
 }

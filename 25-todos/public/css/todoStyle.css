@@ -34,6 +34,14 @@
   width: 40%;
 }
 
+.todo-title.error {
+  border-bottom-color: #cc0033;
+}
+
+.todo-title.error:focus {
+  border-bottom-color: #cc0033;
+}
+
 .todo-form input:focus, .todo-form textarea:focus {
   border-bottom-color: var(--clr-green-1);
 }
@@ -71,15 +79,15 @@
   gap: 0.8rem;
 }
 
-.date-error, .title-error {
+.title-error {
   color: #cc0033;
   font-size: 12px;
-  margin: 5px 0 0 66px;
+  justify-self: flex-start;
   display: none;
 }
 
-.date-error.show, .title-error.show {
-  display: inline-block;
+.title-error.show {
+  display: block;
 }
 
 @media (max-width: 576px) {
@@ -110,6 +118,10 @@
   .todo-title {
     width: 80%;
   }
+
+  .title-error.show {
+    display: none;
+  }
 }
 
 
@@ -134,36 +146,30 @@
   z-index: 100;
 }
 
-.overlay-container {
+.todo-overlay-container {
   position: relative;
+  width: 60%;
+  max-width: 500px;
   background-color: var(--clr-white);
   display: grid;
-  grid-template-rows: auto 1fr auto;
   transform: scale(0);
   transition: var(--transition);
 }
 
-.overlay-container.show {
+.todo-overlay-container.show {
   transform: scale(1);
 }
 
-.overlay-container i {
-  font-size: 2rem;
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-}
-
-.overlay-container span {
+.todo-overlay-container span {
   font-size: 2rem;
   justify-self: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .overlay-text {
   text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 /* Loading Overlay */
@@ -238,5 +244,11 @@
   75% {
     filter: blur(3px);
     transform: scale(1.4);
+  }
+}
+
+@media (max-width: 576px) {
+  .todo-overlay-container {
+    width: 90%;
   }
 }

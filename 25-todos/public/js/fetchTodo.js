@@ -1,11 +1,11 @@
 export async function fetchTodo(id) {
-  const response = await fetch(`http://localhost:3000/todos?id=${id}`)
-  const todo = await response.json()
+  const response = await fetch(`http://localhost:3000/todos?id=${id}`);
+  const todo = await response.json();
 
-  return todo[0]
+  return todo[0];
 }
 
-export async function UpdateTodo(id, newTodo) {
+export async function updateTodo(id, newTodo) {
   try {
     const response = await fetch(`http://localhost:3000/todos/${id}`, {
       method: "PUT",
@@ -13,15 +13,13 @@ export async function UpdateTodo(id, newTodo) {
         "Content-Type": "application/json",
       },
       redirect: "follow",
-      body: JSON.stringify(newTodo)
-    })
+      body: JSON.stringify(newTodo),
+    });
 
-    if(response.redirected) {
-      window.location.href = "http://location:5501/25-todos/index.html"
-    }
+    window.location.href = "http://localhost:5500/index.html";
 
-    console.log(response)
+    console.log(response);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
