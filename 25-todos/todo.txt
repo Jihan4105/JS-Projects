@@ -1,0 +1,6 @@
+2024-12-18............
+
+fetchTodos.js 에서 index.html로 가는 URL에 date추가 까지 했음.
+여기서 부터
+
+index.html URL에 date추가해주는 작업해줘야함.

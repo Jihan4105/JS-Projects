@@ -1,10 +1,18 @@
 import formatDate from "../formatDate.js";
 import fetchTodos from "../fetchTodos.js";
-import { getElement } from "../utils.js";
+import { getElement, searchStringToObject } from "../utils.js";
+import { deleteTodo } from "../fetchTodo.js";
+
+// GlobalVariables
+const url = new URL(`${window.location.href}`);
+let selectedDate = formatDate(new Date().getTime()).date
+let selectedMilisecond = searchStringToObject(url).date
+// const todayStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
+// const todayEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
 
 // Vanila JS Datepicker 
-const elem = document.getElementById("datepicker");
-const datepicker = new Datepicker(elem, {
+const datepickerDOM = document.getElementById("datepicker");
+const datepicker = new Datepicker(datepickerDOM, {
   // ...options
   format: "yyyy-mm-dd",
   todayHighlight: true,
@@ -13,15 +21,23 @@ const datepicker = new Datepicker(elem, {
 });
 
 
+document.addEventListener("DOMContentLoaded", (e) => {
+  getElement(".today.focused").classList.add("selected")
+})
+
+
 // Datepicker가 Selecte 되었을때 실행
 const dateContainer = getElement(".datepicker-grid");
 const todoLists = getElement(".todo-lists");
 
 dateContainer.addEventListener("click", async (e) => {
   const milisecond = parseInt(e.target.dataset.date);
-  console.log(milisecond);
   const todoLists = getElement(".todo-lists");
-  const todos = await fetchTodos(milisecond);
+  selectedDate = formatDate(milisecond).date
+  selectedMilisecond = milisecond
+  const dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
+  const dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
+  const todos = await fetchTodos(dateStartMilisecond, dateEndMilisecond);
 
   todoLists.innerHTML = todos
     .map((todo, index) => {
@@ -66,11 +82,28 @@ todoLists.addEventListener("click", (e) => {
   else if (e.target.classList.contains("edit-btn")) {
     window.location.href = `http://localhost:5500/todo.html?id=${e.target.parentElement.dataset.id}&mode=update`;
   }
+
+  // Delete button Clicked
+  else if (e.target.classList.contains("delete-btn")) {
+    // const promiseDelete = new Promise((res, rej) => {
+    //   deleteTodo(e.target.parentElement.dataset.id)
+    //   res("success")
+    // })
+
+    // promiseDelete
+    //   .then((value) => {
+    //     console.log("!")
+    //     fetchTodos(selectedMilisecond)
+    //   })
+
+  }
 });
 
 
 //New Button이 클릭되었을때
 const newBtn = getElement(".new-btn")
-newBtn.addEventListener("click", () => {
-  
+newBtn.addEventListener("click", (e) => {
+  e.preventDefault()
+
+  window.location.href = `http://localhost:5500/todo.html?selectedDate=${selectedDate}&mode=create`
 })
