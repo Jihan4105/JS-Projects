@@ -20,6 +20,37 @@
   box-shadow: var(--shadow-card);
 }
 
+.range-box {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto auto;
+}
+
+#from {
+  border: 1px solid #ccc;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.range-to {
+  display: grid;
+  width: 3rem;
+  height: 100%;
+  place-items: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background-color: #F5F5F5;
+}
+
+#to {
+  border: 1px solid #ccc;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+  width: 100%;
+}
 
 .condition-form {
   display: flex;
@@ -33,11 +64,6 @@
   display: block;
 }
 
-.range-box {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
 .from-datepicker, .to-datepicker {
   border: 1px solid;
@@ -46,11 +72,12 @@
 
 .search-group {
   display: flex;
-  border: 1px solid;
+  border: 1px solid #ccc;
   border-radius: var(--radius);
 }
 
 .search-group i {
+  color: rgb(150, 150, 150);
   padding: 0.8rem
 }
 
@@ -184,4 +211,192 @@
     font-weight: 400;
     padding-left: 0.5rem;
   }
+}
+
+/* Radio Button */
+
+.radio-wrapper-6 {
+  display: flex;
+  align-items: center;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .radio-wrapper-6 input[type=radio] {
+    --active: var(--clr-green-4);
+    --active-inner: #fff;
+    --focus: 2px rgba(32, 204, 55, 0.3);
+    --border: #BBC1E1;
+    --border-hover: var(--clr-green-3);
+    --background: #fff;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 27px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+
+  .radio-wrapper-6 input[type=radio]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+
+  .radio-wrapper-6 input[type=radio]:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: .3s;
+    --d-t: .6s;
+    --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+  }
+
+  .radio-wrapper-6 input[type=radio]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+
+  .radio-wrapper-6 input[type=radio]:disabled:checked {
+    --b: var(--disabled-inner);
+    --bc: var(--border);
+  }
+
+  .radio-wrapper-6 input[type=radio]:disabled+label {
+    cursor: not-allowed;
+    color: #8A91B4;
+  }
+
+  .radio-wrapper-6 input[type=radio]:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
+
+  .radio-wrapper-6 input[type=radio]:focus {
+    box-shadow: 0 0 0 var(--focus);
+  }
+
+  .radio-wrapper-6 input[type=radio]:not(.switch) {
+    width: 27px;
+  }
+
+  .radio-wrapper-6 input[type=radio]:not(.switch):after {
+    opacity: var(--o, 0);
+  }
+
+  .radio-wrapper-6 input[type=radio]:not(.switch):checked {
+    --o: 1;
+  }
+
+  .radio-wrapper-6 input[type=radio]+label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: .5em;
+  }
+
+  .radio-wrapper-6 input[type=radio] {
+    border-radius: 50%;
+  }
+
+  .radio-wrapper-6 input[type=radio]:after {
+    width: 24.8px;
+    height: 24.8px;
+    border-radius: 50%;
+    background: var(--active-inner);
+    opacity: 0;
+    transform: scale(var(--s, 0.7));
+  }
+
+  .radio-wrapper-6 input[type=radio]:checked {
+    --s: .5;
+  }
+}
+
+/* Custom VanilaJS DatePicker */
+
+.datepicker-grid .datepicker-cell.today:not(.selected) {
+  background-color: transparent;
+  border: 2px solid var(--clr-green-1);
+  color: black;
+  font-weight: 600;
+}
+
+.datepicker-cell.selected,
+.datepicker-cell.selected:hover {
+  background-color: var(--clr-green-2);
+}
+
+/* Custom LightPick Rangepicker */
+#rangepicker {
+  display: none;
+}
+
+.lightpick {
+  order: -1;
+}
+
+/* Mode Radio Button */
+
+.radio-wrapper-20 input[type="radio"]:focus {
+  outline: 0;
+  border-color: var(--clr-green-1);
+  box-shadow: 0 0 0 4px #b5c9fc;
+}
+
+.radio-wrapper-20 {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-top: 0.5rem; */
+  justify-content: center;
+}
+
+.radio-wrapper-20 input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.radio-wrapper-20 input[type="radio"]:checked+span {
+  box-shadow: 0 0 0 0.0625em var(--clr-green-3);
+  background-color: #dee7ff;
+  z-index: 1;
+  color: var(--clr-green-3);
+}
+
+.radio-wrapper-20 label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+.radio-wrapper-20 label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+.radio-wrapper-20 label:last-child span {
+  border-radius: 0 .375em .375em 0;
 }

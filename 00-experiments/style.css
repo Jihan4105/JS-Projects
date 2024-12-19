@@ -1,0 +1,31 @@
+.range-box {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto auto;
+}
+
+#from {
+  border: 1px solid #ccc;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.range-to {
+  display: grid;
+  width: 3rem;
+  height: 100%;
+  place-items: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background-color: #F5F5F5;
+}
+
+#to {
+  border: 1px solid #ccc;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+  width: 100%;
+}

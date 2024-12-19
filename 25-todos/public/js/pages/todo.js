@@ -159,9 +159,7 @@ async function updateModeDisplay(id) {
         <input type="text" name="todo-title" id="todo-title" class="todo-title" value="${todo.title}" >
         <span class="title-error">Invalid Title</span>
       </div>
-      <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec" >
-        ${todo.message}
-        </textarea > 
+      <textarea name="todo-dsec" id="todo-dsec" class="todo-dsec">${todo.message}</textarea > 
       <div class="btn-container">
         <button class="btn submit-btn">Submit</button>
         <button class="btn dangerous-btn first-dangerous-btn">Cancel</button>

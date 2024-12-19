@@ -1,11 +1,20 @@
 import fetchTodos from "./fetchTodos.js";
 import { getElement } from "./utils.js";
 
-async function displayTodos(dateStartMilisecond, dateEndMilisecond) {
+async function displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue) {
   const todos = await fetchTodos(dateStartMilisecond, dateEndMilisecond);
   const todoLists = getElement(".todo-lists");
+  let filteredTodos = todos
 
-  todoLists.innerHTML = todos
+
+  filteredTodos = todos.filter((todo) => {
+    if(
+      todo.title.toLowerCase().includes(searchString) && 
+      (radioValue === "all" || (todo.done).toString() === radioValue)
+    ) return true
+  })
+
+  todoLists.innerHTML = filteredTodos
     .map((todo, index) => {
       return `
       <li class="todo-list">
