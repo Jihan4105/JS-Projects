@@ -1,5 +1,24 @@
 import { searchStringToObject } from "./utils.js";
 
+export async function updateDone(id, updatedDoneValue) {
+  try{
+    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        done: updatedDoneValue
+      })
+    })
+
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 export async function fetchTodo(id) {
   const response = await fetch(`http://localhost:3000/todos?id=${id}`);
   const todo = await response.json();

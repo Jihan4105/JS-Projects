@@ -13,7 +13,7 @@
       "date": 1579935720000,
       "title": "GOGO",
       "message": "Let's go",
-      "done": true,
+      "done": false,
       "allday": false
     },
     {
@@ -51,8 +51,8 @@
     {
       "date": 1734534000000,
       "title": "NEW!",
-      "message": "sadfsadf\n        ",
-      "done": false,
+      "message": "sadfsadf",
+      "done": true,
       "allday": true,
       "id": 7
     },
@@ -84,7 +84,7 @@
       "date": 1734534000000,
       "title": "NEWONW",
       "message": "NEONWE",
-      "done": false,
+      "done": true,
       "allday": false,
       "id": 11
     },

@@ -1,7 +1,7 @@
 import formatDate from "../formatDate.js";
 import { getElement, searchStringToObject } from "../utils.js";
 import displayTodos from "../displayTodos.js";
-import { deleteTodo } from "../fetchTodo.js";
+import { deleteTodo, updateDone } from "../fetchTodo.js";
 
 // GlobalVariables
 let selectedMilisecond = searchStringToObject(new URL(`${window.location.href}`)).date
@@ -37,6 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
   displayTodos(dateStartMilisecond, dateEndMilisecond)
 })
 
+// radio버튼 이벤트 핸들러
+const radioBox = getElement(".radio-box")
+radioBox.addEventListener("click", (e) => {
+  if(e.target.classList.contains("radio")) {
+    const radioBtnsArray = [...document.querySelectorAll(".radio-btn")]
+    
+    radioBtnsArray.forEach((radioBtn) => {
+      if(e.target.classList.item(1) != radioBtn.classList.item(1)){
+        radioBtn.checked = false
+      }
+    })
+  }
+})
 
 // Datepicker가 Select 되었을때 실행
 const dateContainer = getElement(".datepicker-grid");
@@ -52,9 +65,20 @@ dateContainer.addEventListener("click", async (e) => {
   displayTodos(dateStartMilisecond, dateEndMilisecond)
 });
 
+
+//ul에 event Listener 달아주기기
 todoLists.addEventListener("click", (e) => {
+
+  //doneCheckbox Clicked
+  if (e.target.classList.contains("done-checkbox")) {
+    const selectedTodoId = parseInt(e.target.getAttribute("id").slice(9))
+    const updatedDoneValue = e.target.checked
+
+    updateDone(selectedTodoId, updatedDoneValue)
+  }
+
   // List Item Clicked
-  if (e.target.classList.contains("clickable")) {
+  else if (e.target.classList.contains("clickable")) {
     window.location.href = `http://localhost:5500/todo.html?id=${e.target.dataset.id}&mode=read&selectedMilisecond=${selectedMilisecond}`;
   }
 
