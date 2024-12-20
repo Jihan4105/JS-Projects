@@ -326,6 +326,14 @@
 
 /* Custom VanilaJS DatePicker */
 
+#datepicker {
+  display: none;
+}
+
+#datepicker.show {
+  display: block;
+}
+
 .datepicker-grid .datepicker-cell.today:not(.selected) {
   background-color: transparent;
   border: 2px solid var(--clr-green-1);
@@ -345,6 +353,11 @@
 
 .lightpick {
   order: -1;
+  display: none;
+}
+
+.lightpick.show {
+  display: inline-block;
 }
 
 /* Mode Radio Button */

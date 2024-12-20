@@ -11,14 +11,13 @@ let selectedDate = formatDate(parseInt(selectedMilisecond)).date
 let deleteTodoId;
 let searchString = "";
 let radioValue = "all";
-let dateStartMilisecond = new Date(selectedMilisecond + ":00:00:00").getTime()
-let dateEndMilisecond = new Date(selectedMilisecond + ":23:59:59").getTime()
+let dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
+let dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
 
 const overlay = getElement(".overlay")
 const overlayContainer = getElement(".overlay-container")
 const fromInput = getElement("#from")
 const toInput = getElement("#to")
-
 
 
 // Vanila JS Datepicker 
@@ -33,11 +32,40 @@ const datepicker = new Datepicker(datepickerDOM, {
 });
 
 // LightPicker Rangepicker
-const picker = new Lightpick({ 
+const rangepicker = new Lightpick({ 
   // ...options
   field: document.getElementById('rangepicker'),
   singleDate: false,
-  inline: true
+  inline: true,
+  minDate: "1990-01-01",
+  maxDate: "2200-12-31",
+  lang: "eng",
+  onOpen: () => {
+    getElement(".is-today").classList.add("is-start-date")
+    getElement(".is-today").classList.add("is-end-date")
+    getElement(".is-today").classList.add("is-in-range")
+  },
+  onSelect: () => {
+    const fromMilisecond = rangepicker.getStartDate()._i
+    const toMilisecond = rangepicker.getEndDate() ? rangepicker.getEndDate()._i : undefined
+
+    fromInput.value = rangepicker.toString("YYYY-MM-DD").slice(0, 10)
+    toInput.value = toMilisecond ? rangepicker.toString("YYYY-MM-DD").slice(13) : ""
+
+    if(fromInput.value > toInput.value) {
+      toInput.value = ""
+    } 
+
+    if(fromMilisecond && toMilisecond) {
+      const fromStartMilisecond = new Date(fromInput.value + ":00:00:00").getTime()
+      const toStartMilisecond = new Date(toInput.value + ":23:59:59").getTime()
+
+      dateStartMilisecond = fromStartMilisecond
+      dateEndMilisecond = toStartMilisecond
+
+      displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
+    }
+  }
 });
 const rangepickerDOM = getElement(".lightpick")
 
@@ -61,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dateEndMilisecond = new Date(formatedDate + ":23:59:59").getTime()
 
   displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
+
 })
 
 // Filter Mode 스위칭 이벤트 핸들러러
@@ -69,9 +98,10 @@ modeRadioBtns.forEach((modeRadioBtn) => {
   modeRadioBtn.addEventListener("click", (e) => {
     if(e.target.previousSibling.previousSibling.id === "date-mode") {
       dateModeEnabled(selectedDate)
+      rangepicker.setDate(new Date())
+      
     } else{
-      rangepickerDOM.style.display = "inline-block"
-      datepickerDOM.style.display = "none"
+      fromToModeEnabled(selectedDate)
     }
   })
 })
@@ -108,7 +138,6 @@ dateContainer.addEventListener("click", async (e) => {
   dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
   displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
 });
-
 
 //ul에 event Listener 달아주기기
 todoLists.addEventListener("click", (e) => {
