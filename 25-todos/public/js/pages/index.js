@@ -8,6 +8,8 @@ import fromToModeEnabled from "../FromToMode.js";
 // GlobalVariables
 let selectedMilisecond = searchStringToObject(new URL(`${window.location.href}`)).date
 let selectedDate = formatDate(parseInt(selectedMilisecond)).date
+let rangepickerDOM
+let singlePickerDOM
 let deleteTodoId;
 let searchString = "";
 let radioValue = "all";
@@ -18,23 +20,54 @@ const overlay = getElement(".overlay")
 const overlayContainer = getElement(".overlay-container")
 const fromInput = getElement("#from")
 const toInput = getElement("#to")
+const todoLists = getElement(".todo-lists")
 
 
 // Vanila JS Datepicker 
-const datepickerDOM = document.getElementById("datepicker");
-const datepicker = new Datepicker(datepickerDOM, {
+// const datepickerDOM = document.getElementById("datepicker");
+// const datepicker = new Datepicker(datepickerDOM, {
+//   // ...options
+//   format: "yyyy-mm-dd",
+//   todayHighlight: true,
+//   defaultViewDate: selectedDate,
+//   maxDate: "2200-12-31",
+//   minDate: "1990-01-01"
+// });
+
+// LightPicker Singlepicker
+const singleDatePicker = new Lightpick({
   // ...options
-  format: "yyyy-mm-dd",
-  todayHighlight: true,
-  defaultViewDate: selectedDate,
+  field: document.getElementById('single-datepicker'),
+  singleDate: true,
+  inline: true,
   maxDate: "2200-12-31",
-  minDate: "1990-01-01"
+  minDate: "1990-01-01",
+  lang: "eng",
+  onOpen: () => {
+    const singlePickerDates = [...document.querySelectorAll(".lightpick__day")]
+    singlePickerDates.forEach((singleDate) => {
+      if(dateStartMilisecond <= singleDate.dataset.time && singleDate.dataset.time <= dateEndMilisecond) {
+        singleDate.classList.add("is-start-date")
+      }
+    })
+  },
+  onSelect: () => {
+    const milisecond = singleDatePicker.getDate()._i
+    selectedDate = formatDate(milisecond).date
+    selectedMilisecond = milisecond.toString()
+
+    fromInput.value = selectedDate
+
+    dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
+    dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
+    displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
+  }
 });
 
 // LightPicker Rangepicker
-const rangepicker = new Lightpick({ 
+const rangeDatePicker = new Lightpick({ 
   // ...options
-  field: document.getElementById('rangepicker'),
+  field: document.getElementById('range-datepicker'),
   singleDate: false,
   inline: true,
   minDate: "1990-01-01",
@@ -46,11 +79,11 @@ const rangepicker = new Lightpick({
     getElement(".is-today").classList.add("is-in-range")
   },
   onSelect: () => {
-    const fromMilisecond = rangepicker.getStartDate()._i
-    const toMilisecond = rangepicker.getEndDate() ? rangepicker.getEndDate()._i : undefined
+    const fromMilisecond = rangeDatePicker.getStartDate()._i
+    const toMilisecond = rangeDatePicker.getEndDate() ? rangeDatePicker.getEndDate()._i : undefined
 
-    fromInput.value = rangepicker.toString("YYYY-MM-DD").slice(0, 10)
-    toInput.value = toMilisecond ? rangepicker.toString("YYYY-MM-DD").slice(13) : ""
+    fromInput.value = rangeDatePicker.toString("YYYY-MM-DD").slice(0, 10)
+    toInput.value = toMilisecond ? rangeDatePicker.toString("YYYY-MM-DD").slice(13) : ""
 
     if(fromInput.value > toInput.value) {
       toInput.value = ""
@@ -67,7 +100,6 @@ const rangepicker = new Lightpick({
     }
   }
 });
-const rangepickerDOM = getElement(".lightpick")
 
 
 
@@ -77,10 +109,15 @@ logo.addEventListener("click", () => window.location.href = `http://127.0.0.1:55
 
 //페이지가 로딩 되었을때 실행
 document.addEventListener("DOMContentLoaded", () => {
-  getElement(".datepicker-cell.focused").classList.add("selected")
+  // getElement(".datepicker-cell.focused").classList.add("selected")
   const url = new URL(`${window.location.href}`);
   const { date } = searchStringToObject(url)
   const formatedDate = formatDate(parseInt(date)).date
+  const datePickers = document.querySelectorAll(".lightpick")
+  datePickers[0].classList.add("single-picker")
+  datePickers[1].classList.add("range-picker")
+  singlePickerDOM = getElement(".single-picker")
+  rangepickerDOM = getElement(".range-picker")
 
   dateModeEnabled(formatedDate)
 
@@ -98,10 +135,9 @@ modeRadioBtns.forEach((modeRadioBtn) => {
   modeRadioBtn.addEventListener("click", (e) => {
     if(e.target.previousSibling.previousSibling.id === "date-mode") {
       dateModeEnabled(selectedDate)
-      rangepicker.setDate(new Date())
-      
     } else{
-      fromToModeEnabled(selectedDate)
+      fromToModeEnabled()
+      rangeDatePicker.setDateRange(new Date(selectedDate), new Date(selectedDate))
     }
   })
 })
@@ -125,21 +161,21 @@ radioBox.addEventListener("click", (e) => {
 })
 
 // Datepicker가 Select 되었을때 실행
-const dateContainer = getElement(".datepicker-grid");
-const todoLists = getElement(".todo-lists");
-dateContainer.addEventListener("click", async (e) => {
-  const milisecond = parseInt(e.target.dataset.date);
-  selectedDate = formatDate(milisecond).date
-  selectedMilisecond = milisecond.toString()
+// const dateContainer = getElement(".datepicker-grid");
+// const todoLists = getElement(".todo-lists");
+// dateContainer.addEventListener("click", (e) => {
+//   const milisecond = parseInt(e.target.dataset.date);
+//   selectedDate = formatDate(milisecond).date
+//   selectedMilisecond = milisecond.toString()
 
-  fromInput.value = selectedDate
+//   fromInput.value = selectedDate
 
-  dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
-  dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
-  displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
-});
+//   dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
+//   dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
+//   displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue)
+// });
 
-//ul에 event Listener 달아주기기
+// //ul에 event Listener 달아주기기
 todoLists.addEventListener("click", (e) => {
 
   //doneCheckbox Clicked

@@ -1,9 +1,9 @@
 import formatDate from "./formatDate.js";
 import { getElement } from "./utils.js";
 
-function fromToModeEnabled(selectedDate) {  
-  const datepickerDOM = document.getElementById("datepicker");
-  const rangepickerDOM = getElement(".lightpick")
+function fromToModeEnabled() {  
+  const singlePickerDOM = getElement(".single-picker");
+  const rangePickerDOM = getElement(".range-picker")
   const allRadioBtn = getElement(".all-radio")
   const notyetRadioBtn = getElement(".notyet-radio")
   const doneRadioBtn = getElement(".done-radio")
@@ -11,14 +11,13 @@ function fromToModeEnabled(selectedDate) {
   const toInput = getElement("#to")
   const todoLists = getElement(".todo-lists")
 
-  rangepickerDOM.classList.add("show")
-  datepickerDOM.classList.remove("show")
+  rangePickerDOM.classList.add("show")
+  singlePickerDOM.classList.remove("show")
   todoLists.innerHTML = ""
   fromInput.value = ""
   allRadioBtn.checked = true;
   notyetRadioBtn.checked = false;
   doneRadioBtn.checked = false
-
   toInput.disabled = false
 }
 

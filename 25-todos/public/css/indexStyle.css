@@ -326,7 +326,7 @@
 
 /* Custom VanilaJS DatePicker */
 
-#datepicker {
+/* #datepicker {
   display: none;
 }
 
@@ -344,21 +344,35 @@
 .datepicker-cell.selected,
 .datepicker-cell.selected:hover {
   background-color: var(--clr-green-2);
-}
+} */
 
 /* Custom LightPick Rangepicker */
-#rangepicker {
+#single-datepicker {
+  display: none;
+}
+
+#range-datepicker {
   display: none;
 }
 
 .lightpick {
   order: -1;
+  z-index: 1;
   display: none;
 }
 
 .lightpick.show {
   display: inline-block;
 }
+
+.single-picker .lightpick__day.is-today.is-start-date.is-end-date {
+  background-image: url(../../image/today.svg);
+  background-size: 18.8% auto;
+  background-position: center bottom;
+  color: #DC322F;
+  font-weight: 400;
+}
+
 
 /* Mode Radio Button */
 
