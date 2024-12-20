@@ -361,7 +361,7 @@
   display: none;
 }
 
-.lightpick.show {
+.lightpick.datepicker-show {
   display: inline-block;
 }
 

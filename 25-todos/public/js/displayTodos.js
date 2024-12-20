@@ -6,7 +6,6 @@ async function displayTodos(dateStartMilisecond, dateEndMilisecond, searchString
   const todoLists = getElement(".todo-lists");
   let filteredTodos = todos
 
-
   filteredTodos = todos.filter((todo) => {
     if(
       todo.title.toLowerCase().includes(searchString) && 

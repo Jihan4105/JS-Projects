@@ -11,3 +11,11 @@ index.html URL에 date추가해주는 작업해줘야함.
 
 내일부턴 index.html에 있는 filtering과 donecheckbox을 구현해 주어야함.
 
+2024-12-20 19:48........
+
+CRUD 메서드를 사용한뒤에 index.js로 돌아올 경우를 생각해서 그걸 구현해줘야함
+
+
+
+
+
