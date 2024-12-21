@@ -123,12 +123,6 @@
   }
 }
 
-@media (max-width: 576px) {
-  .search-group {
-    width: 80%;
-  } 
-}
-
 @media (max-width: 500px) {
   .radio-box {
     width: 100%;
@@ -192,8 +186,17 @@
   text-overflow: ellipsis;
 }
 
+.todo-title span {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
 .edit-btn {
   margin-right: 0.6rem;
+}
+
+.todo-date {
+  font-size: 0.8rem;
 }
 
 @media (max-width: 576px) {
@@ -209,9 +212,14 @@
   }
 
   .todo-title {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     padding-left: 0.5rem;
+  }
+
+  .todo-title span {
+    font-size: 0.7rem;
+    display: none;
   }
 }
 
@@ -232,8 +240,7 @@
     --background: #fff;
     --disabled: #F6F8FF;
     --disabled-inner: #E1E6F9;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
     height: 27px;
     outline: none;
     display: inline-block;
@@ -344,14 +351,6 @@
 
 .lightpick.show {
   display: inline-block;
-}
-
-.single-picker .lightpick__day.is-today.is-start-date.is-end-date {
-  background-image: url(../../image/today.svg);
-  background-size: 18.8% auto;
-  background-position: center bottom;
-  color: #DC322F;
-  font-weight: 400;
 }
 
 @media (max-width: 768px) {

@@ -2,6 +2,7 @@ import formatDate from "../formatDate.js";
 import { getElement, searchStringToObject } from "../utils.js";
 import displayTodos from "../displayTodos.js";
 import { deleteTodo, updateDone } from "../fetchTodo.js";
+import initForm from "../initForm.js";
 
 // GlobalVariables
 const localStorage = window.localStorage
@@ -13,12 +14,14 @@ let dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
 let fromStartMilisecond 
 let toEndMilisecond
 
-let localMode
-let localDateValue
-let localFromValue
-let localToValue
-let localRadioValue
-let localSearchString
+const localObj = {
+  mode: "date",
+  date: selectedDate,
+  fromDate: selectedDate,
+  toDate: selectedDate,
+  searchString: "",
+  radio: "all"
+}
 
 const overlay = getElement(".overlay")
 const overlayContainer = getElement(".overlay-container")
@@ -43,13 +46,13 @@ const singleDatePicker = new Lightpick({
     selectedDate = formatDate(milisecond).date
 
     localStorage.setItem("dateValue", selectedDate)
-    localDateValue = selectedDate
+    localObj.date = selectedDate
 
     fromInput.value = selectedDate
 
     dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
     dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
-    displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
+    displayTodos(dateStartMilisecond, dateEndMilisecond, localObj.searchString, localObj.radio)
   }
 });
 
@@ -76,16 +79,16 @@ const rangeDatePicker = new Lightpick({
     if(fromMilisecond && toMilisecond) {
       localStorage.setItem("fromValue", fromInput.value)
       localStorage.setItem("toValue", toInput.value)
-      localFromValue = fromInput.value
-      localToValue = toInput.value
+      localObj.fromDate = fromInput.value
+      localObj.toDate = toInput.value
 
       fromStartMilisecond = new Date(fromInput.value + ":00:00:00").getTime()
       toEndMilisecond = new Date(toInput.value + ":23:59:59").getTime()
 
-      if(localMode === "date") {
-        displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
+      if(localObj.mode === "date") {
+        displayTodos(dateStartMilisecond, dateEndMilisecond, localObj.searchString, localObj.radio)
       } else {
-        displayTodos(fromStartMilisecond, toEndMilisecond, localSearchString, localRadioValue)
+        displayTodos(fromStartMilisecond, toEndMilisecond, localObj.searchString, localObj.radio)
       }
     }
   }
@@ -99,6 +102,8 @@ logo.addEventListener("click", () => window.location.href = `http://127.0.0.1:55
 //페이지가 로딩 되었을때 실행
 document.addEventListener("DOMContentLoaded", () => {
   const datePickers = document.querySelectorAll(".lightpick")
+  const startMilisecond = (localObj.mode === "date") ? dateStartMilisecond : fromStartMilisecond
+  const endMilisecond = (localObj.mode === "date") ? dateEndMilisecond : toEndMilisecond
   datePickers[0].classList.add("single-picker")
   datePickers[1].classList.add("range-picker")
   singlePickerDOM = getElement(".single-picker")
@@ -113,100 +118,40 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("radioValue", "all")
   }
 
-  localMode = localStorage.getItem("mode")
-  localDateValue = localStorage.getItem("dateValue")
-  localFromValue = localStorage.getItem("fromValue")
-  localToValue = localStorage.getItem("toValue")
-  localSearchString = localStorage.getItem("searchString")
-  localRadioValue = localStorage.getItem("radioValue")
+  singleDatePicker.setDate(localObj.date)
+  rangeDatePicker.setDateRange(localObj.fromDate, localObj.toDate)
 
-  singleDatePicker.setDate(localDateValue)
-  rangeDatePicker.setDateRange(localFromValue, localToValue)
-
-  if(localMode === "date") {
-    const radioBtns = [...document.querySelectorAll(".radio-btn")]
-
-    //검색 컨디션 불러오기
-    getElement("#date-mode").checked = true
-    getElement("#from-to-mode").checked = false
-    fromInput.value = localDateValue
-    toInput.value = ""
-    toInput.disabled = true
-    searchInput.value = localSearchString
-    radioBtns.forEach((radioBtn) => {
-      if(radioBtn.dataset.done === localRadioValue) {
-        radioBtn.checked = true
-      } else {
-        radioBtn.checked = false
-      }
-    })
-
-    fromStartMilisecond = new Date(localFromValue + ":00:00:00").getTime()
-    toEndMilisecond = new Date(localToValue + ":23:59:59").getTime()
-
-    singlePickerDOM.classList.add("show")
-    rangePickerDOM.classList.remove("show")   
-
-    displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
-  }
-
-  else if(localMode === "fromTo") {
-    const radioBtns = [...document.querySelectorAll(".radio-btn")]
-
-    getElement("#date-mode").checked = false
-    getElement("#from-to-mode").checked = true
-    fromInput.value = localFromValue
-    toInput.value = localToValue
-    searchInput.value = localSearchString
-    fromStartMilisecond = new Date(localFromValue + ":00:00:00").getTime()
-    toEndMilisecond = new Date(localToValue + ":23:59:59").getTime()
-
-    singlePickerDOM.classList.remove("show")
-    rangePickerDOM.classList.add("show")   
-
-    radioBtns.forEach((radioBtn) => {
-      if(radioBtn.dataset.done === localRadioValue) {
-        radioBtn.checked = true
-      } else {
-        radioBtn.checked = false
-      }
-    })
-
-    displayTodos(fromStartMilisecond, toEndMilisecond, localSearchString, localRadioValue)
-  }
+  initForm(localObj, startMilisecond, endMilisecond)
 })
 
 // Filter Mode 스위칭 이벤트 핸들러
 const modeRadioBtns = [...document.querySelectorAll(".mode-radio label span")]
 modeRadioBtns.forEach((modeRadioBtn) => {
   modeRadioBtn.addEventListener("click", (e) => {
-    const singlePickerDOM = getElement(".single-picker");
-    const rangePickerDOM = getElement(".range-picker")
-
     if(e.target.previousSibling.previousSibling.id === "date-mode") {
       localStorage.setItem("mode", "date")
-      localMode = "date"
+      localObj.mode = "date"
 
       singlePickerDOM.classList.add("show")
       rangePickerDOM.classList.remove("show")
       
-      fromInput.value = localDateValue
+      fromInput.value = localObj.date
       toInput.value = ""
       toInput.disabled = true;
 
-      displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
+      displayTodos(dateStartMilisecond, dateEndMilisecond, localObj.searchString, localObj.radio)
     } else{
       localStorage.setItem("mode", "fromTo")
-      localMode = "fromTo"
+      localObj.mode = "fromTo"
 
       rangePickerDOM.classList.add("show")
       singlePickerDOM.classList.remove("show")
 
-      fromInput.value = localFromValue
-      toInput.value = localToValue
+      fromInput.value = localObj.fromDate
+      toInput.value = localObj.toDate
       toInput.disabled = false
 
-      displayTodos(fromStartMilisecond, toEndMilisecond, localSearchString, localRadioValue)
+      displayTodos(fromStartMilisecond, toEndMilisecond, localObj.searchString, localObj.radio)
     }
   })
 })
@@ -222,16 +167,16 @@ radioBox.addEventListener("click", (e) => {
         radioBtn.checked = false
       } else {
         localStorage.setItem("radioValue", radioBtn.dataset.done)
-        localRadioValue = radioBtn.dataset.done
+        localObj.radio = radioBtn.dataset.done
       }
     })
 
-    localRadioValue = e.target.dataset.done
+    localObj.radio = e.target.dataset.done
 
-    if(localMode === "date") {
-      displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
+    if(localObj.mode === "date") {
+      displayTodos(dateStartMilisecond, dateEndMilisecond, localObj.searchString, localObj.radio)
     } else {
-      displayTodos(fromStartMilisecond, toEndMilisecond, localSearchString, localRadioValue)
+      displayTodos(fromStartMilisecond, toEndMilisecond, localObj.searchString, localObj.radio)
     }
   }
 })
@@ -278,11 +223,12 @@ newBtn.addEventListener("click", (e) => {
 const searchInput = getElement(".search-input")
 searchInput.addEventListener("keyup", (e) => {
   localStorage.setItem("searchString", searchInput.value)
-  localSearchString = searchInput.value
-  if(localMode === "date") {
-    displayTodos(dateStartMilisecond, dateEndMilisecond, localSearchString, localRadioValue)
+  localObj.searchString = searchInput.value
+
+  if(localObj.mode === "date") {
+    displayTodos(dateStartMilisecond, dateEndMilisecond, localObj.searchString, localObj.radio)
   } else {
-    displayTodos(fromStartMilisecond, toEndMilisecond, localSearchString, localRadioValue)
+    displayTodos(fromStartMilisecond, toEndMilisecond, localObj.searchString, localObj.radio)
   }
 })
 
