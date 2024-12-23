@@ -5,7 +5,7 @@ import formatDate from "./formatDate.js";
 async function displayTodos(dateStartMilisecond, dateEndMilisecond, searchString, radioValue) {
   const todos = await fetchTodos(dateStartMilisecond, dateEndMilisecond);
   todos.sort((frontTodo, backTodo) => {
-    return frontTodo.date - backTodo.date;
+    return backTodo.date - frontTodo.date;
   })
 
   const todoLists = getElement(".todo-lists");
