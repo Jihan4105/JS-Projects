@@ -11,16 +11,16 @@ let selectedDate = formatDate(parseInt(selectedMilisecond)).date
 let deleteTodoId;
 let dateStartMilisecond = new Date(selectedDate + ":00:00:00").getTime()
 let dateEndMilisecond = new Date(selectedDate + ":23:59:59").getTime()
-let fromStartMilisecond 
-let toEndMilisecond
+let fromStartMilisecond = new Date(localStorage.getItem("fromValue") + ":00:00:00").getTime()
+let toEndMilisecond = new Date(localStorage.getItem("toValue") + ":23:59:59").getTime()
 
 const localObj = {
-  mode: "date",
-  date: selectedDate,
-  fromDate: selectedDate,
-  toDate: selectedDate,
-  searchString: "",
-  radio: "all"
+  mode: localStorage.getItem("mode"),
+  date: localStorage.getItem("dateValue"),
+  fromDate: localStorage.getItem("fromValue"),
+  toDate: localStorage.getItem("toValue"),
+  searchString: localStorage.getItem("searchString"),
+  radio: localStorage.getItem("radioValue")
 }
 
 const overlay = getElement(".overlay")
@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const datePickers = document.querySelectorAll(".lightpick")
   const startMilisecond = (localObj.mode === "date") ? dateStartMilisecond : fromStartMilisecond
   const endMilisecond = (localObj.mode === "date") ? dateEndMilisecond : toEndMilisecond
+  debugger
   datePickers[0].classList.add("single-picker")
   datePickers[1].classList.add("range-picker")
   singlePickerDOM = getElement(".single-picker")
@@ -116,11 +117,18 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("toValue", selectedDate)
     localStorage.setItem("searchString", "")
     localStorage.setItem("radioValue", "all")
+
+    localObj.mode = "date"
+    localObj.date = selectedDate
+    localObj.fromDate = selectedDate
+    localObj.toDate = selectedDate
+    localObj.searchString = ""
+    localObj.radio = "all"
   }
 
   singleDatePicker.setDate(localObj.date)
   rangeDatePicker.setDateRange(localObj.fromDate, localObj.toDate)
-
+  
   initForm(localObj, startMilisecond, endMilisecond)
 })
 
