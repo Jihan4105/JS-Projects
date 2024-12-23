@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const datePickers = document.querySelectorAll(".lightpick")
   const startMilisecond = (localObj.mode === "date") ? dateStartMilisecond : fromStartMilisecond
   const endMilisecond = (localObj.mode === "date") ? dateEndMilisecond : toEndMilisecond
-  debugger
   datePickers[0].classList.add("single-picker")
   datePickers[1].classList.add("range-picker")
   singlePickerDOM = getElement(".single-picker")
